@@ -1,0 +1,1 @@
+ng serve --port 7777 --host 192.168.0.169 --open
