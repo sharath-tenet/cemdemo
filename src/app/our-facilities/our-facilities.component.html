@@ -1,0 +1,172 @@
+<div class="content" style="min-height:800px;">
+
+<div class="container">
+    	<div class="row" style="margin-top:30px; margin-bottom:0px;">
+        	<div class="col-md-1"></div>
+			<div class="col-md-10 text-center">
+					<div class="form-group" style="margin: 20px 0px;">
+							
+						
+											<div class="input-group search_input-group">
+											  <input #searchString type="text" class="form-control input-lg dropdown-toggle" data-toggle="dropdown" placeholder="Search for Pathology Tests, Scans, MRI, CT etc." aria-describedby="basic-addon2" aria-expanded="true" [formControl]="searchTerm" (keyup.enter)="searchBasedOnString(searchTerm.value)" [(ngModel)]=filterKey value="{{ser_string}}">
+											  <span  *ngIf="searchString.value.length>0" class="" style="color: #f05b25;position: absolute;top: 12px;right: 60px;z-index: 2;padding-right: 10px;cursor:pointer;" (click)="searchString.value=''">X Clear</span>
+											<div class="dropdown-menu search_dropdown" style="width:100%;max-height:250px;overflow-y:auto;    z-index: 1999;">
+												<ul class="search_ul" >
+													   
+													<li class="heading" *ngIf="searchResult.length > 0"><i class="fa fa-history"></i> Tests Related to {{searchTerm.value}}</li>
+													<li *ngFor="let item of searchResult"><a (click)="select(item.test_name,'test')">{{item.test_name}}</a></li>
+													
+													<li class="heading" *ngIf="((_packagesSearchResult.length > 0)&&(mpckgshow===true))"><i class="fa fa-history"></i> Packages Related to {{searchTerm.value}}</li>
+													<li *ngFor="let item of _packagesSearchResult"><a (click)="select(item.package_name,'package')">{{item.package_name}}</a></li>
+						
+													<li class="heading" *ngIf="((_packagesSearchResult.length ==0) && (searchResult.length==0) &&(searchString.value===''))">Popular Tests</li>
+													<li *ngFor="let test of getPopularTests(searchString.value)" (click)="select(test,'test')">{{test}}</li>
+						
+												</ul>
+											  </div>
+						
+											  <span class="input-group-addon" id="basic-addon2" style="background-color:#fff; border:0px;"  (click)="searchBasedOnString(searchTerm.value)"> 
+													<span><i class="fa fa-circle" style="color:#EEEEED ; font-size: 50px;margin-top: -7px;"></i></span>
+													<div style="font-size: 35px;margin-top: -42px; color:#f05b25"><i class="fa fa-search"></i></div>
+													  
+											  </span>
+											</div>
+						
+										</div>
+            </div>	
+        </div>		 <hr>
+        
+       
+        
+        
+         <div class="row" style="padding:20px 0px; margin-top:15px; margin-bottom:15px;">
+			<div class="col-md-12">
+                  <h1 class="bigtitle"><strong>OUR FACILITIES </strong></h1>
+            </div>
+            <div class="col-md-6">
+                  <h2 class="titles"><img src="./assets/images/iconimages/teneticon.png" class="pull-left" height="35" style="margin:0px 10px 10px 0px; "> RADIOLOGY </h2>
+                  <div class="info" style="">
+                  		<p class="text-justify">Radiology provides critical inputs when doctors and physicians are in the process of determining and identifying a patient’s medical problem. Reliable radiology services are essential for medical professionals to confirm or negate certain medical conditions. At Tenet, every procedure is supervised by our team of highly qualified and experienced Radiologists, to ensure that the results are accurate and clinically relevant to enable better diagnosis. With our commitment to reliable, accurate and responsive diagnosis, Tenet houses a complete spectrum of radiology services like the High Resolution 3D Ultrasound and 64 slice Cardiac CT scanner.</p>
+                        <h4 class="text-brandcolor">TECHNOLOGY HIGHLIGHTS</h4>
+						<p><strong>MRI - 3T/1.5T -</strong> MAGNETOM SKYRA - Total Imaging Matrix - 4th  Generation, Ultrafast Scan with Neuro and MSK Quite Suite. Go Brain - 5 min Fast Scan</p>
+						<p><strong>MDCT - </strong>Fast and Precise Imaging. SAFIRE - Low Dose CT. Inline Computer Aided Detection (CAD)</p>
+						<p><strong>ULTRASOUND - </strong>GE Logiq S7 R2, P9, F8 - Cross Beam Imaging, XD Clear, CEUS</p>
+						<p><strong>2D ECHO - </strong>STIC/Omniview. Auto IMT/EF</p>
+						<p><strong>BMD-DEXA - </strong>GE Lunar Prodigy Advance  - Encore/FRAX Software with Auto Analysis. Subject Trend Analysis</p>
+						<p><strong>Mammography - </strong>Mammomat-Automated Exposure control for Extremely Low Radiation Dose. Swivel Arm with Compression for Maximum Subject Comfort </p>
+						<p><strong>ECG/ENMG/EEG - Mac 2000 - </strong>Cutting Edge Marquette, 12 Lead ECG with Analysis Program and Resting ECG</p>
+						<p><strong>TMT - Mac 5500/Cardiosoft - </strong>Digital Signal with ECG Analysis Algorithms</p>
+						<p><strong>Computed Radiography - </strong>Image Intelligence with High Speed Processing, SAR with High Efficiency Dry Imager</p>
+						<p><strong></strong></p>		
+											
+                  </div>
+				  
+             </div>
+             <div class="col-md-6 text-center">
+             	<img src="./assets/images/iconimages/facilities/102.png" width="60%" style="margin:10px;">
+             
+				<div class="row">
+					<div class="col-md-2"></div>
+					<div class="col-md-8">
+						<div class="row">			
+									<div class="col-md-4 col-xs-4 text-center">
+										<img src="./assets/images/iconimages/facilities/5.png" width="100%">
+										<h5 class="text-brandcolor">MDCT</h5>
+									</div>
+									<div class="col-md-4 col-xs-4 text-center">
+										<img src="./assets/images/iconimages/facilities/09.png" width="100%">
+										<h5 class="text-brandcolor">ULTRA <br>SOUND</h5>
+									</div>
+									<div class="col-md-4 col-xs-4 text-center">
+										<img src="./assets/images/iconimages/facilities/08.png" width="100%">
+										<h5 class="text-brandcolor">2D ECHO</h5>
+									</div>
+						</div>
+						<div class="row">			
+									<div class="col-md-4 col-xs-4 text-center">
+										<img src="./assets/images/iconimages/facilities/2656.png" width="100%">
+										<h5 class="text-brandcolor">BMD</h5>
+									</div>
+									<div class="col-md-4 col-xs-4 text-center">
+										<img src="./assets/images/iconimages/02.png" width="100%" height="92.06px">
+										<h5 class="text-brandcolor">MAMMOGRAPHY</h5>
+									</div>
+									<div class="col-md-4 col-xs-4 text-center">
+										<img src="./assets/images/iconimages/facilities/06.png" width="100%">
+										<h5 class="text-brandcolor">ECG/ENMG/EEG</h5>
+									</div>
+						</div>
+					</div>
+				</div>
+			</div>
+          </div>
+          <hr>
+          <div class="row" style="padding:20px 0px; margin-top:15px; margin-bottom:15px;">
+          
+		  </div>
+          <div class="row" style="padding:20px 0px; margin-top:15px; margin-bottom:15px;">
+           <div class="col-md-6">
+                  <h2 class="titles"><img src="./assets/images/iconimages/teneticon.png" class="pull-left" height="35" style="margin:0px 10px 10px 0px; "> PATHOLGY  </h2>
+                  <div class="info" style="">
+                  		<p class="text-justify">To monitor your health status better, pathology testing helps not just to diagnose or test a disease but to prevent it as well, by detecting possible precursors. These services include tests done on clinical specimens for the purpose of obtaining relevant information of your health to define appropriate health and lifestyle precautions. Some procedures are invasive while others are not. Our main aim is to provide quality services focused on prevention and early detection of diseases, using latest technology, sophisticated equipment and follow stringent quality measures. With our complete spectrum of services from routine tests such as CBP or Blood Glucose to highly specialized investigations for infectious diseases, cancer markers, hormonal assays, therapeutic drug assays etc. Each individual discipline is headed by experienced, professionally qualified medical doctors supported by a team of qualified and trained technologists. All quantitative investigations are undertaken on fully automated state of art the analyzers, to eliminate the chance of any human error.</p>
+                         <h4 class="text-brandcolor">TECHNOLOGY HIGHLIGHTS</h4>
+						<p><strong>LCMS - </strong>Newborn Screening/Metabolic Disorders/Vitamins/Immunosuppressants</p>
+						<p><strong>Genexpert - </strong>Tuberculosis</p>
+						<p><strong>Immunocap - </strong>Allergy Screening</p>
+						<p><strong>Liquid Based Cytology - </strong>Cervical Cancer</p>
+						<p><strong>PRISCA - </strong>An Advanced Prenatal Risk Calculation System</p>
+						<p><strong>HPLC - </strong>Automated System for Diabetic &amp; Thalassemia Testing</p>
+						<p><strong>Immuno Fixation Electrophoresis – </strong>Cancers</p>
+						<p><strong>Cytogenetics - </strong>Chromosomal Disorders</p>
+						<p><strong>Immunofluorescence - </strong>Autoimmune Disorders</p>
+						<p><strong>Multiplex RT PCR - </strong>Molecular Diagnostics</p>
+						<p><strong>Automated Clinical Chemistry Systems</strong></p>
+						<p><strong>Flow Cytometry - </strong>Analysis of Blood &amp; Body Fluid in Routine <br> Hematology / Immunophenotyping </p>
+						<p><strong>Nephelometry – </strong>Quick &amp; Accurate Measurement of Plasma <br>Proteins / Immunoglobulins</p>
+						<p><strong>Automated Microbial Identification and AST Systems</strong></p>
+						<p><strong>Immunohistochemistry - </strong>Histopathology</p>
+                  </div>
+				 
+             </div>
+			 
+             <div class="col-md-6 text-center">
+             	<img src="./assets/images/iconimages/facilities/12.png" width="100%" style="margin:10px;">
+             
+				
+				<div class="row">
+					<div class="col-md-2"></div>
+					<div class="col-md-4 col-xs-6">
+						<img src="./assets/images/iconimages/facilities/0202.png" width="130px">
+						<h5 class="text-brandcolor">PHLEBOTOMY</h5>
+					</div>
+					
+					<div class="col-md-4 col-xs-6">
+						<img src="./assets/images/iconimages/facilities/0303.png" width="130px">
+						<h5 class="text-brandcolor">SPECIMEN<br>COLLECTION</h5>
+					</div>
+				</div>
+		
+						
+							
+			</div>
+          </div>
+		  <hr>
+		  <hr>
+			 <div class="row" style="padding:30px 0;">
+					<div class="col-md-6 text-center " style="padding:20px">
+						 <button class="btn btn-brand btn-lg home_btn" (click)="getBookAnAppointment()" style="height: 70px;padding: 0 50px;width:270px;">Book a Test</button>
+			
+					</div>
+					<div class="col-md-6 text-center left-border-brandcolor-light-2px" style="padding:20px">
+							<!-- tokenSet -->
+						<span *ngIf="tokenSet"><button class="btn btn-brand btn-lg home_btn" (click)="redir('./account/order-history')" style="text-align:center;height: 70px;padding: 0 50px;width:270px;">Check Report <br> Status</button></span>  
+						<span *ngIf="!tokenSet">
+							<button class="btn btn-brand btn-lg home_btn" (click)="getOTP()" style="text-align:center;height: 70px;padding: 0 50px;width:270px;">Check Report <br> Status</button> 
+						</span>  
+						
+					</div>
+			 </div>
+		<h4 class="text-center text-brandcolor">Join the 'It's Good to know' regime. Follow us on our social media channels and get free health tips regularly. <br> Call us on 86880 86880.</h4>    
+	 </div>
+	 
+</div>

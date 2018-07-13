@@ -1,0 +1,66 @@
+<ul class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/">Home</a></li>
+    <li class="breadcrumb-item"><a href="/book">Test</a></li>
+    <li class="breadcrumb-item active">Test Details</li>
+  </ul>
+  <button class="btn btn-primary btn-sm pull-right" (click)="getAddTestCart1(testDetails)">Add to Cart</button>
+
+  <div class="col-lg-10">
+    <h2 id="nav-tabs">{{testDetails.test_name}}</h2>
+    <div class="bs-component">
+      <ul class="nav nav-tabs" *ngIf="sw==1">
+       
+            <li class="nav-link active"><a href="javascript:void(0)" data-toggle="tab" aria-expanded="true" (click)="showHide(1)">Clinical Information</a></li>
+            <li class="nav-link"><a data-toggle="tab" aria-expanded="false" (click)="showHide(2)">Test Information</a></li>
+      </ul>
+      <ul class="nav nav-tabs" *ngIf="sw==2">
+          <li class="nav-link "><a href="javascript:void(0)" data-toggle="tab" aria-expanded="false" (click)="showHide(1)">Clinical Information</a></li>
+          <li class="nav-link active"><a href="javascript:void(0)" data-toggle="tab" aria-expanded="true" (click)="showHide(2)">Test Information</a></li>
+      </ul>
+  
+      <div id="myTabContent" class="tab-content" >
+        <div class="tab-pane fade in active show" id="home" *ngIf="sw==1">
+          <div class="col-lg-6">
+              <div class="bs-component">
+                  <h4>Test also known as :</h4>
+                  <ul><li><p>{{testDetails.test_other_names}}</p></li></ul>
+                  <h4>Speciality :</h4>
+                  <ul><li><p>{{testDetails.test_spec}}.</p></li></ul>
+                  <h4>Specimen Type :</h4>
+                  <ul><li><p>{{testDetails.spec_type| json}}.</p></li></ul>
+                  <h4>Specimen Instruction :</h4>
+                  <ul><li><p>{{testDetails.spec_inst}}.</p></li></ul>
+                  <h4>Pre Test Information :</h4>
+                 
+                  <ul><li  [innerHtml]="testDetails.test_ptn"></li></ul>
+                  
+                  
+                  
+                  <h4>Test Code :</h4>
+                  <ul><li><p>{{testDetails.test_code}}.</p></li></ul>
+                  
+              
+            </div>
+        </div>
+      </div>
+      <div class="tab-pane fade in active show" id="profile" *ngIf="sw==2">
+          
+            <div class="col-lg-6">
+                <div class="bs-component">
+                    <h4>Test Schedule :</h4>
+                    <ul><li><p>{{testDetails.test_sch}}.</p></li></ul>  
+                    <h4>Availability :</h4>
+                    <ul><li><p>{{testDetails.report_avb}}.</p></li></ul>
+                    <h4>Why to get test :</h4>
+                    <ul><li><p>{{testDetails.test_whygt}}.</p></li></ul>
+                    <h4>When to get test :</h4>
+                    <ul><li><p>{{testDetails.test_whengt}}.</p></li></ul>
+                    <h4>Related tests :</h4>
+                    <ul><li><p>{{testDetails.test_rel}}.</p></li></ul>
+                    <h4>Referral Links :</h4>
+                    <ul><li><p>{{testDetails.test_name}}.</p></li></ul>
+               </div>
+          </div>
+        </div>
+    
+  </div>

@@ -1,0 +1,189 @@
+<div class="content" style="min-height:800px;">
+  <div class="container">
+      <div class="row">
+            <div class="col-md-12">
+                <h1 class="bigtitle" style="margin-bottom: 0px;">YOUR ORDER IS CONFIRMED</h1>
+
+                 <div *ngIf="order_data?.length>0" [ngStyle]="{'font-size': '24px'}">
+                  <!--style="font-size:19px"; -->
+                  <div><a href="./account/order-history">Click Here to see Order Status</a></div>
+                  <div  *ngFor="let pd of order_data">
+                   <p>Bill No. : {{pd.ordNo}} | <a target="_blank" href="http://208.163.37.165/IntgCEMS/orderinvoice/{{pd.message}}"><i title="Download the RCS" class="fa fa-arrow-down"></i></a></p> 
+                 <!--  <p> Bill No. : {{pd.ordNo}} | </p>
+                      <a target="_blank" href="http://208.163.37.165/IntgCEMS/orderinvoice/{{pd.message}}"><i title="Download the RCS" class="fa fa-arrow-down"></i></a> -->
+                 <!-- <p >Bill No : 5744112 | TENET IDENTIFICATION NUMBER(TIN):RAJ5471</p> -->
+                 </div>
+                  </div>
+            </div>
+        </div>
+  <div class="row" *ngIf="orderInfo[0]?.length>0">
+    <div class="col-md-12" >
+      <h4 class="titles" style="font-weight:600"><img src="./assets/images/iconimages/bag.png" class="pull-left" style="margin: -6px 01px 01px 0px;    width: 30px !important; " />{{orderInfo[0][0].patient_name}}</h4>
+    
+      <div class="col-md-12 margin-bottom: 10px;" *ngFor="let of1 of orderInfo; let i = index">
+        <div class="row" style="margin-bottom: 10px;background-color:#eee">
+          <div class="col-md-4" style=" border-right:1px solid #afafaf">
+            <h4 style="padding:10px 0; margin:0">{{of1.test_name}}</h4>
+          </div>
+          <!-- <div>{{ getTestInstructions(of1.tid) }}</div> -->
+          <div class="col-md-4" style="border-right:1px solid #afafaf">
+            <h4 style="padding:10px 0; margin:0">{{of1.order_type == 1 ? "Home collection" : "Visit Center"}}</h4>
+          </div>
+          <div class="col-md-4">
+         <!--    <h4 style="padding:10px 0; margin:0"> 29<sup>th</sup> Feb, 2018; 10.30 AM</h4> -->
+         <h4 style="padding:10px 0; margin:0"></h4>{{orderInfo[0][0].schedule_dt | date:'dd-MM-yyyy HH:mm a' }}
+          </div>
+        </div>
+        
+        <div style="border-top:1px solid #a09191; margin:20px 0;"></div>
+   
+        <p class="ft-16px m-b-15" *ngIf="testInstrs[of1.tid][0].test_instructions != null" ><b>Genaral Instructions</b></p>
+                <ul class="list-ul-default">
+                  <li *ngIf="testInstrs[of1.tid][0].test_instructions != null">{{ testInstrs[of1.tid][0].test_instructions }}</li>
+                                          <!--   <li>Please do fasting for 12 hours before the test scheduled date</li>
+                                            <li>No Special preparation required</li>
+                                            <li>Draw blood between 8-10 a.m. .</li>
+                      <li>Patient discontinues Heparin for 1 day and Oral Anticoagulants for 7 days prior to sampling as these drugs may affect test results.</li>
+                      <li>Discontinuation should be with prior consent from the treating Physician .</li> -->
+                </ul>
+                 <div [ngStyle]="{'border-top':'1px solid #a09191','margin':'20px 0'}" *ngIf="testInstrs[of1.tid][0].test_instructions != null"></div>
+      </div>
+
+      <!-- <div class="col-md-12">
+        <div class="row" style="background-color:#eee">
+          <div class="col-md-4" style="border-right:1px solid #afafaf">
+            <h4 style="padding:10px 0; margin:0"> Essential Package</h4>
+          </div>
+          <div class="col-md-4" style="border-right:1px solid #afafaf">
+            <h4 style="padding:10px 0; margin:0"> Tenet HUB, Banjara Hills</h4>
+          </div>
+          <div class="col-md-4" >
+            <h4 style="padding:10px 0; margin:0"> 29<sup>th</sup> Feb, 2018; 10.30 AM</h4>
+          </div>
+        </div>  
+      </div> -->
+    </div>  
+    </div>
+
+
+    <!--info1 -->
+    <div class="row" *ngIf="orderInfo[1]?.length>0">
+    <div class="col-md-12" >
+      <h4 class="titles" style="font-weight:600"><img src="./assets/images/iconimages/bag.png" class="pull-left" style="margin: -6px 01px 01px 0px;    width: 30px !important; " />{{orderInfo[1][0].patient_name}}</h4>
+    
+      <div class="col-md-12 margin-bottom: 10px;" *ngFor="let of2 of orderInfo[1]">
+        <div class="row" style="margin-bottom: 10px;background-color:#eee">
+          <div class="col-md-4" style=" border-right:1px solid #afafaf">
+            <h4 style="padding:10px 0; margin:0">{{of2.test_name}}</h4>
+          </div>
+          <!--  <div>{{ getTestInstructions(of2.tid) }}</div> -->
+          <div class="col-md-4" style="border-right:1px solid #afafaf">
+            <h4 style="padding:10px 0; margin:0">{{of2.order_type == 1 ? "Home collection" : "Visit Center"}}</h4>
+          </div>
+          <div class="col-md-4">
+         <!--    <h4 style="padding:10px 0; margin:0"> 29<sup>th</sup> Feb, 2018; 10.30 AM</h4> -->
+         <h4 style="padding:10px 0; margin:0"></h4>{{orderInfo[1][0].schedule_dt | date:'dd-MM-yyyy HH:mm a'}}
+          </div>
+        </div>
+
+        <div style="border-top:1px solid #a09191; margin:20px 0;"></div>
+     
+        <p class="ft-16px m-b-15" *ngIf="testInstrs[of2.tid][0].test_instructions != null"><b>Genaral Instructions</b></p>
+                <ul class="list-ul-default">
+                                             <li *ngIf="testInstrs[of2.tid][0].test_instructions != null">{{ testInstrs[of2.tid][0].test_instructions }}</li>
+                                          
+                </ul>
+                 <div [ngStyle]="{'border-top':'1px solid #a09191','margin':'20px 0'}" *ngIf="testInstrs[of2.tid][0].test_instructions != null"></div>
+      </div>
+       
+    </div>
+     
+    </div>
+
+<!--basic -->
+<div class="tenet-loader" *ngIf="loading['details']" ><img src="./assets/images/monogram.svg" /></div> 
+<div class="row" *ngIf="orderInfo1.length>0">
+    
+    <div class="col-md-12" >
+      <h4 class="titles" style="font-weight:600"><img src="./assets/images/iconimages/bag.png" class="pull-left" style="margin: -6px 01px 01px 0px;    width: 30px !important; " />{{orderInfo1[0].patient_name}}</h4>
+    
+      <div class="col-md-12 margin-bottom: 10px;" *ngFor="let ordInf1 of orderInfo1">
+        <div class="row" style="margin-bottom: 10px;background-color:#eee">
+          <div class="col-md-4" style=" border-right:1px solid #afafaf">
+            <h4 style="padding:10px 0; margin:0">{{ordInf1.test_name}}</h4>
+          </div>
+           <!-- <div>{{ getTestInstructions(ordInf1.tid) }}</div> -->
+          <div class="col-md-4" style="border-right:1px solid #afafaf">
+            <h4 style="padding:10px 0; margin:0">{{ ordInf1.order_type == 1? "Home collection" : "Visit Center"}}</h4>
+          </div>
+          <div class="col-md-4">
+         <!--    <h4 style="padding:10px 0; margin:0"> 29<sup>th</sup> Feb, 2018; 10.30 AM</h4> -->
+        <h4 style="padding:10px 0; margin:0">{{ordInf1.schedule_dt | date:'dd-MM-yyyy HH:mm a'}}</h4>
+          </div>
+        </div>
+       <!--  <div style="border-top:1px solid #a09191; margin:20px 0;"></div>  --> 
+        <p class="ft-16px m-b-15" *ngIf="testInstrs[ordInf1.tid][0].test_instructions != null"><b>Genaral Instructions</b></p>
+                <ul class="list-ul-default">
+                                            <li *ngIf="testInstrs[ordInf1.tid][0].test_instructions != null">{{ testInstrs[ordInf1.tid][0].test_instructions }}</li>
+                                       
+                </ul>
+                 <div [ngStyle]="{'border-top':'1px solid #a09191','margin':'20px 0'}" *ngIf="testInstrs[ordInf1.tid][0].test_instructions != null"></div>
+      </div>
+   
+    
+    </div> 
+
+    </div>
+
+
+
+
+    
+    <!-- <div style="border-top:1px solid #a09191; margin:20px 0;"></div> -->
+  <!-- <div class="row">
+    <div class="col-md-12">
+      <h4 class="titles" style="font-weight:600"><img src="./assets/images/iconimages/bag.png" class="pull-left" style="margin: -6px 01px 01px 0px;    width: 30px !important; " />kalidadu</h4>
+    
+      <div class="col-md-12 margin-bottom: 10px;">
+      
+        <div class="row" style="margin-bottom: 10px;background-color:#eee">
+          <div class="col-md-4" style=" border-right:1px solid #afafaf">
+            <h4 style="padding:10px 0; margin:0"> Sodium-24hrs Urine.</h4>
+          </div>
+          <div class="col-md-4" style="border-right:1px solid #afafaf">
+            <h4 style="padding:10px 0; margin:0"> Home Collection</h4>
+          </div>
+          <div class="col-md-4">
+            <h4 style="padding:10px 0; margin:0"> 29<sup>th</sup> Feb, 2018; 10.30 AM</h4>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-12">
+      
+        <div class="row" style="background-color:#eee">
+          <div class="col-md-4" style="border-right:1px solid #afafaf">
+            <h4 style="padding:10px 0; margin:0"> Essential Package</h4>
+          </div>
+          <div class="col-md-4" style="border-right:1px solid #afafaf">
+            <h4 style="padding:10px 0; margin:0"> Tenet HUB, Banjara Hills</h4>
+          </div>
+          <div class="col-md-4" >
+            <h4 style="padding:10px 0; margin:0"> 29<sup>th</sup> Feb, 2018; 10.30 AM</h4>
+          </div>
+        </div>  
+      </div>
+    </div>  
+    
+    </div>
+ -->
+ <!-- <div style="border-top:1px solid #a09191; margin:20px 0;"></div>
+    <div [ngStyle]="{'border-top':'1px solid #a09191','margin':'20px 0'}"></div>
+        <p class="sub_heading-brand ft-16px m-b-15">Genaral Instructions</p>
+                <ul class="list-ul-default">
+                                            <li>Please do fasting for 12 hours before the test scheduled date</li>
+                                          
+                </ul> -->
+
+
+  </div>
+</div>

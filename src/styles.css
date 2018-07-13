@@ -1,0 +1,60 @@
+/* You can add global styles to this file, and also import other style files */
+.navigations_div img{
+    width:35%;
+  }
+  .slider_images .owl-controls{
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  }
+  .slider_images.owl-theme .owl-dots .owl-dot.active span, .owl-theme .owl-dots .owl-dot:hover span {
+      background: #f05b25;
+  }
+  .slider_images.owl-theme .owl-dots .owl-dot span {
+      background: #767676;
+  }
+  .navigations_div{
+    position: absolute;
+    width: 100%;
+    top: 40%;
+    z-index: 1024;
+    /* padding: 0 10%; */
+    
+  }
+  .presentaion_wrapper .navigations_div {
+  padding: 0 3%;
+  }
+  .presentaion_wrapper .navigations_div img{
+    width:20%
+  }
+
+  a{
+    cursor: pointer !important;
+}
+.input-group-addon{
+  cursor: pointer !important;
+}
+.sweet-alert {
+  
+   border-radius: 20px;
+   border: 1.5px solid #f05b25;
+}
+/* .sweet-alert .confirm,.sweet-alert .confirm:hover{
+ color: #fff !important;
+   background-color: #f05b25 !important;
+   border-color: #f05b25 !important;
+}
+.swal2-modal .show-swal2 .visible{
+  color: #fff !important;
+  background-color: #f05b25 !important;
+  border-color: #f05b25 !important;
+
+} */
+.slider_images .owl-dots{
+  position: absolute;
+  width: 100%;
+  bottom: -10px;
+} 
+.slider_images.owl-theme .owl-dots .owl-dot span {
+  background: #76767661;
+}

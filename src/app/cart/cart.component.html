@@ -1,0 +1,623 @@
+
+<div class="content" style="min-height:800px;">
+   
+    <div class="tenet-loader" *ngIf="loading['data']" ><img src="./assets/images/monogram.svg"  /></div>
+    <div class="row" style="">
+        <div  id="add_family" class="modal theme_modal" role="dialog">
+            <div class="modal-dialog">
+              <form  #af="ngForm" novalidate (ngSubmit)="saveFamilyMembers(af,af.valid,user.uid)">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button class="btn modal_close_btn" data-dismiss="modal" #add_family (click)="resetAf(af)">&times;</button>
+                  <h4 class="modal-title"></h4>
+                </div>
+                <div class="modal-body">
+                  <div class="row">
+                <div class="col-md-12">
+                
+                  <h4  class="titles text-left" style="font-weight:600">ADD FAMILY MEMBER</h4>
+                    <div>
+                    </div>
+                  
+                      <div class="form-group">
+                            <input class="form-control theme" placeholder="First Name*" name="firstName1" required ngModel #firstName1="ngModel"  pattern="[a-zA-Z ]*" minlength="3" style="text-transform:uppercase"/>
+                            <div style="color:#fc6107" 
+                                          *ngIf="firstName1?.errors && (firstName1.dirty || firstName1.touched || af.submitted ||  firstName1.pattern)">
+                                            <p *ngIf="firstName1?.errors.required">
+                                                The First name is required
+                                            </p>
+                                           
+                                            <p *ngIf="firstName1?.errors.pattern">
+                                                 The First name should only consist of alphabets
+                                            </p> 
+                                            <p *ngIf="firstName1?.errors.minlength">
+                                                 The First name must be at least 3 characters long.
+                                            </p> 
+
+                             </div>
+                    </div>
+                     <div class="form-group">
+                            <input class="form-control theme" placeholder="Last Name*" name="lastName1" required ngModel #lastName1="ngModel" pattern="[a-zA-Z ]*" minlength="3" style="text-transform:uppercase"/>
+                            <div style="color:#fc6107" 
+                                          *ngIf="lastName1?.errors && (lastName1.dirty || lastName1.touched || af.submitted ||  lastName1.pattern)">
+                                            <p *ngIf="lastName1?.errors.required">
+                                                The Last Name is required
+                                            </p>
+                                           
+                                            <p *ngIf="lastName1?.errors.pattern">
+                                                 The Last Name should only consist of alphabets
+                                            </p> 
+                                            <p *ngIf="lastName1?.errors.minlength">
+                                                 The Last Name must be at least 3 characters long.
+                                            </p> 
+
+                             </div>
+                    </div>
+
+                      <div class="radio">
+                        <label><input  type="radio" required name="user_gender" value="1" ngModel #user_gender="ngModel"/>Male</label>
+                        <label><input  type="radio" required name="user_gender" value="2" ngModel #user_gender="ngModel"/>Female</label>
+                        <div style="color:#fc6107" *ngIf="user_gender?.errors && (user_gender.touched || af.submitted)">
+                            <p *ngIf="user_gender?.errors.required">
+                                The Gender is required
+                            </p>    
+          
+                        </div>
+                      </div>
+                      <div class="form-group" *ngIf="ph">
+                        <input placeholder="Email*" class="theme form-control" type="email" required ngModel name="user_email" #user_email="ngModel" pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}">
+                        <div style="color:#fc6107" *ngIf="user_email?.errors && (user_email.dirty || user_email.touched || af.submitted || user_email.pattern)">
+                                            <p *ngIf="user_email?.errors.required">
+                                                The Email is required
+                                            </p>
+                                            
+                                            <p *ngIf="user_email?.errors.pattern">
+                                                Invalid email
+                                            </p>
+                        </div>
+                      </div>
+                     
+                      <div class="form-group" style="position:relative">
+                       <input class="form-control" style="float:none" placeholder="Select a date*" ngx-mydatepicker name="user_dob1" required ngModel [options]="myOptions1"  #udob="ngx-mydatepicker" #user_dob1="ngModel"(dateChanged)="onDateChanged($event)"  maxDate="0" readonly="true" />
+                 
+                                 <span class="input-group-btn" style="position: absolute;top: 2px;right: 72px;">
+                                     <button type="button" class="btn btn-default" (click)="udob.clearDate()">
+                                         <i class="glyphicon glyphicon-remove"></i>
+                                     </button>
+                                     <button type="button" class="btn btn-default" (click)="udob.toggleCalendar()" >
+                                         <i class="glyphicon glyphicon-calendar"></i>
+                                     </button>
+                                 </span>
+                      <div style="color:#fc6107" *ngIf="user_dob1?.errors && (user_dob1.dirty || user_dob1.touched || af.submitted)">
+                            <p *ngIf="user_dob1.errors.required">
+                                The Date of birth is required
+                            </p>
+
+                      </div>
+                    </div>
+                      <div class="form-group" *ngIf="ph">
+                        <input class="form-control theme" placeholder="Phone Number*" required name="user_mobile" ngModel #user_mobile="ngModel" pattern="[0-9]*" minlength="10" maxlength="10"/>
+                        <div style="color:#fc6107" *ngIf="user_mobile?.errors && (user_mobile.dirty || user_mobile.touched || af.submitted || user_mobile.minlength || user_mobile.pattern)">
+                            <p *ngIf="user_mobile?.errors.required">
+                                The Phone Number is required
+                            </p>
+                             <p *ngIf="user_mobile?.errors.minlength">
+                                  Phone number should be 10 digit
+                            </p>
+                            <p *ngIf="user_mobile?.errors.minlength">
+                                 Phone number should be only numbers
+                            </p>
+          
+                        </div>
+                      </div>
+                       <strong  class="form-text text-success" *ngIf="fam">Family member added successfully</strong>
+                    
+                </div>
+              </div>
+                </div>
+                <div class="modal-footer text-center" style="text-align:center">
+                  
+              <button type="submit" #otpModel class="btn btn-brand"  data-toggle="modal"  data-backdrop="false" class="btn btn-brand">SAVE</button>
+                </div>
+              </div>
+            </form>
+            </div>
+          </div>
+
+         <!--otp verify-->
+          <div id="otp_model" class="modal theme_modal" role="dialog">
+            <div class="modal-dialog">
+              <form  #votpForm="ngForm" novalidate (ngSubmit)="getMemberOtpVerification(votpForm,votpForm.valid,memId)">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button class="btn modal_close_btn" data-dismiss="modal" #otp_model (click)="reset(votpForm)">&times;</button>
+                  <h4 class="modal-title"></h4>
+                </div>
+                <div class="modal-body">
+                  <div class="row">
+                <div class="col-md-12">
+                    <div>
+                   
+                    <h4 class="text-center text-bold" style="padding:15px; font-weight:600">{{errorMessage}} 
+                   </h4>
+                    </div>
+                 
+                    <div class="text-center">
+                      <div class="form-inline" style="width:300px;margin:0 auto;">
+                         <input type="text" maxlength="1" oninput="this.value=this.value.replace(/[^0-9]/g,'');" class="form-control theme otp_input" name="term1" ngModel style="width:50px; float:left;" #term1 ="ngModel" minlength="1" maxlength="1" (keyup)="autoTab($event)" />
+                        <input type="text" maxlength="1" oninput="this.value=this.value.replace(/[^0-9]/g,'');" class="form-control theme otp_input" name="term2" ngModel style="width:50px; float:left;" #term2 ="ngModel" minlength="1" maxlength="1" (keyup)="autoTab($event)"/>
+                        <input type="text" maxlength="1" oninput="this.value=this.value.replace(/[^0-9]/g,'');" class="form-control theme otp_input" name="term3" ngModel style="width:50px; float:left;" #term3="ngModel" minlength="1" maxlength="1" (keyup)="autoTab($event)"/>
+                        <input type="text" maxlength="1" oninput="this.value=this.value.replace(/[^0-9]/g,'');" class="form-control theme otp_input" name="term4" ngModel style="width:50px; float:left;" #term4 ="ngModel" minlength="1" maxlength="1" (keyup)="autoTab($event)"/>
+                      
+                        <div class="clearfix"></div>
+                        <div class="clearfix"></div>
+                      </div>
+                    </div>
+
+                     
+                    
+                </div>
+              </div>
+                </div>
+              <div class="modal-footer text-center" style="text-align:center">
+              <button type="button" class="btn btn-default" [disabled]="getresendotptime()>0" (click)="afResendOTP(memId)">Resend OTP <span *ngIf="getresendotptime()>0">in {{getresendotptime()}}</span></button>
+              <button type="submit" class="btn btn-brand"  data-backdrop="false">Confirm</button>
+              </div>
+              </div>
+                </form> 
+            </div>
+          </div>
+
+          <div *ngIf="modify_bill" ><p class="wmsg">You Are Adding To Existing Bill : <b>{{modify_bill}}</b></p><input type="radio" name="modify" value="1" checked="true"/>Yes,<input type="radio" name="modify" value="2" (click)="noModify()"/>No,I Want To Make A New Bill</div>
+
+      </div>
+    <div *ngIf="!ismobileview" class="container">
+        <div class="col-md-12">
+            <h2 class="titles">CART ITEMS</h2>
+        </div>
+      
+
+      
+        
+        <div *ngIf="(tests?.length > 0)||(pckgs?.length > 0)">
+
+        <div class= "row" style="border-bottom:1px solid #eee" *ngFor="let item of getMTestList()">
+          
+          <div class="col-md-12">
+            <div class= "row" >
+              <div class="col-md-4">
+                <p class="sub_heading-brand m-b-15" style="font-size:18px">{{item.test_name}}</p>
+                <p>Who is the test for ?</p>
+              </div>
+              <div class="col-md-4">
+              <div style="width: 60px;margin:  0 auto;">
+                          <div class="input-group" style="border:  0;margin:  0 auto;">
+                            <span class="input-group-addon" style="padding: 0;border:  0;background-color:transparent;padding-right: 5px;font-size: 25px;" (click)="testQuantMinus(item)">
+                            -
+                            </span>
+                            <input type="text" class="form-control theme" value="{{getTestQuant(item.tid)}}" style="width: 50px;padding:  0;text-align:  center;font-size: 25px;height: 40px;" readonly="true">
+                            <span class="input-group-addon" style="padding: 0;padding-left: 5px;border: 0;background-color: transparent;font-size: 25px;" (click)="testQuantPlus(item)">
+                            +
+                            </span>
+                          </div><!-- /input-group -->
+                        </div>
+              
+              </div>
+              <div class="col-md-3">
+                          
+              <h4 style="    text-align: right;
+        font-weight: 700;
+        font-size: 22px;"><small><i class="fa fa-rupee"></i></small> {{getTestQuant(item.tid)*item.test_finalpr}}</h4>
+                 
+              </div>
+              <div class="col-md-1">
+                  <a  class="text-brandcolor" style="line-height:  0;font-size:  18px;" title="remove this test" (click)="removeItem(item.tid)">
+                      <i  class="fa fa-trash" style="line-height:  0;"></i>
+                    </a>
+              </div>
+              
+            </div>
+            
+            
+            
+          </div>
+          <div class="row" style="margin-bottom:15px" *ngFor="let mem of getSelMem(item.tid)">
+            <div class= "col-md-12">  
+              <div class="col-md-1">
+                <div class="form-group" style="margin-top:15px">
+                  <input class="form-control" type="checkbox" checked="checked" (change)="setFamilyMember1(mem.uid, item.tid,$event, item.test_name)"/>
+                </div>      
+              </div>
+              <div class= "col-md-10 bg_light_gray" >
+                <div class="row" style="padding:15px 0px">
+                  <div class="col-md-4" style="border-right:1px solid #000; min-height:80px">
+                    <h4 style="text-transform:uppercase"><strong>{{getUserName(mem.user_name)}} </strong></h4>
+                    
+                  </div>
+                  <div class="col-md-4" style="border-right:1px solid #000;min-height:80px">
+                    <div>
+                      <label class="radio-inline"><input type="radio" name="optradio_{{item.tid}}_{{mem.uid}}" [value]="1" [checked]="1==sel_type[item.tid][mem.uid]" (click)="getLabAddress(1,item.tid,mem.uid)" [disabled]="item.is_home_collection===2">Home Collection</label>
+                      
+                      <label class="radio-inline"><input type="radio" name="optradio_{{item.tid}}_{{mem.uid}}" [value]="2" [checked]="2==sel_type[item.tid][mem.uid]" (click)="getLabAddress(2,item.tid,mem.uid)">Visit Center</label>
+
+                      
+                    </div>
+                    <div style="padding:10px 0">
+                      <div class="input-group pull-left" style="width:50%; padding-right:5px">
+                       
+                        <input class="form-control" style="float:none" placeholder="Select a date" ngx-mydatepicker name="user_dob"
+                        [(ngModel)]="sel_date[item.tid][mem.uid]" [options]="myOptions"  (dateChanged)="setDate($event,item.tid,mem.uid)" #addDate="ngx-mydatepicker" readonly="true"/>
+                        <span class="input-group-addon" id="basic-addon2"  (click)="addDate.toggleCalendar()"><i class="fa fa-calendar" ></i></span>
+                      </div>
+                      <div class="input-group  pull-left" style="width:50%" (change)="setTime($event.target,item.tid,mem.uid)">
+                        <select class="form-control input-sm">
+                        <option *ngFor="let item of getValidTimeSlots(item.tid,mem.uid)" value="{{item.slot}}">{{item.display}}</option>
+                        </select>
+                        <span class="input-group-addon" id="basic-addon2"><i class="fa fa-clock-o"></i></span>
+                      </div>
+                      <div class="clearfix"></div>
+                    </div>
+                  </div>
+                  <div class="col-md-4" style="min-height:80px">
+                    <div *ngIf="locationhcset(item.tid,mem.uid)">
+                      <select class="form-control input-sm" style="background-color: #dcdcdc;
+          color: #f05b25;
+          box-shadow: none;
+          border: 0;
+          padding: 0;
+          font-size: 15px;" (click)="setTestLocation1($event.target.value, item.tid,mem.uid)">
+                      
+                          <option *ngFor="let loc of getSelLoc(item.tid,mem.uid)" value="{{loc.area_id}}" selected="true">{{loc.display_type}}</option>
+                          <option *ngFor="let loc of getNonSelLoc(item.tid,mem.uid)" value="{{loc.area_id}}" >{{loc.display_type}}</option>
+                       
+                      </select>
+                      <p >Address: {{sel_locations[item.tid][mem.uid].address}},{{sel_locations[item.tid][mem.uid].area}},{{sel_locations[item.tid][mem.uid].city}}</p>
+                    </div>
+                    <div *ngIf="locationwiset(item.tid,mem.uid)">
+                        <select class="form-control input-sm" style="background-color: #dcdcdc;
+            color: #f05b25;
+            box-shadow: none;
+            border: 0;
+            padding: 0;
+            font-size: 15px;" (click)="setTestLocation1($event.target.value, item.tid,mem.uid)">
+            <option *ngFor="let loc of getSelLabLoc(item.tid,mem.uid)" value="{{loc.area_id}}" selected="true">{{loc.location_name}}</option>
+            <option *ngFor="let loc of getNonSelLabLoc(item.tid,mem.uid)" value="{{loc.area_id}}" >{{loc.location_name}},{{loc.address}},{{loc.area}},{{loc.city}}</option>
+                        </select>
+                        <p *ngIf="sel_lablocation[item.tid][mem.uid]?.location_name !== undefined">Address:{{sel_lablocation[item.tid][mem.uid].location_name}},{{sel_lablocation[item.tid][mem.uid].address}},{{sel_lablocation[item.tid][mem.uid].area}},{{sel_lablocation[item.tid][mem.uid].city}}</p>
+                        <p *ngIf="sel_lablocation[item.tid][mem.uid]?.location_name == undefined">Address: Please Select The Lab Location above..</p>
+                      </div>
+                  </div>
+                </div>
+              </div>
+            </div>  
+          </div>
+        
+          <div class="row" style="margin-bottom:15px">
+              <div class="col-md-11">
+                  <span *ngIf="getNonSelMem(item.tid).length > 0" style="margin-left: 100px;font-weight:700;color: #f05b25;">Why not book this test for your family too? It's good to know.</span>
+                  <div class="row" style="padding:15px 0px">
+                    <div class="col-md-4" style="padding:15px;" *ngFor="let mem of getNonSelMem(item.tid)">
+                      <div class="row">
+                        <div class="col-xs-3">
+                          <input class="form-control" type="checkbox" (change)="setFamilyMember1(mem.uid, item.tid,$event, item.test_name)">
+                        </div>
+                        <div class="col-xs-9">
+                          <input class="form-control theme" value="{{getUserName(mem.user_name)}}" readonly="true" style="text-transform:uppercase">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-12" style="padding:15px;">
+                      <h5>It is easy to book the test for your family members from your Tenet account. Click here to add a family member.</h5>
+
+                        <a class="link-brand"  data-toggle="modal" data-target="#add_family">+ Add Member</a>
+                    </div>
+                    
+                  </div>
+              
+              </div>  
+            </div>
+        </div>
+      </div>
+      <div class="row" *ngIf="(getMTestList()?.length == 0)">
+        <table class="table">
+          <hr>
+           <tr><td style="text-align:center"><span class="sub_heading-brand ft-16px m-b-15">"Knowing Your Health Is <br>Half The Cure!!"</span><br><span><a href="./book">Add Tests to your cart</a></span></td></tr>
+           
+           <hr>
+        </table>
+      </div>
+      <div class="row" *ngIf="(getMTestList()?.length > 0)||(pckgs?.length > 0)">
+          <div table="col-md-12">
+           <table class="payment_details_table" style="width:100%">
+            
+          
+                <tbody><tr>
+                  <td colspan="6" class="text-right">Testing Charges</td>
+                    <th class="text-right"><small><i class="fa fa-rupee"> </i></small>&nbsp;{{getTestingPrices()}}</th>
+                </tr>
+               
+          <tr>
+                  <td colspan="6" class="text-right">Home Collection Charges</td>
+                    <th class="text-right"><small><i class="fa fa-rupee"> </i></small>&nbsp;{{getHomeVisitCharges()}}</th>
+                </tr>
+                <tr>
+                  <td colspan="6" class="text-right"><h4 style="margin:0">Total Amount to be paid</h4></td>
+                    <td class="text-right" style="padding-right: 0px;"><h3 style="margin:0"><small><i class="fa fa-rupee"> </i></small> {{getTotalPricesUp()}}</h3></td>
+                </tr>
+          </tbody></table>
+          </div>
+          <div class="col-md-12">
+            <div class="row" style="padding:20px 0;">
+            <div class="col-md-4 text-right">
+              Select Payment Option
+            </div>
+            <div class="col-md-4 text-right">
+              <input type="radio" name="paymentOption"  value="1" (click)="mypayotp('1')" checked="checked"/> Pay Online
+            </div>
+            <div class="col-md-4 text-right">
+                <input type="radio" name="paymentOption" value="2" (click)="mypayotp('3')"/> Pay by Cash
+              </div>
+             </div>
+             <div class="row" style="padding:20px 0;">
+                <div class="col-md-4">
+                 
+                </div>
+                <div class="col-md-8 text-right" style="padding-right: 0px;">
+                  <button *ngIf="paymentOption==3" class="btn btn-brand" (click)="checkOut()" [disabled]="isbtnloading"><span *ngIf="isbtnloading"><i class="fa fa-spinner fa-spin"></i>Loading...</span><span *ngIf="!isbtnloading"> CONFIRM BOOKING</span></button>
+                  <button *ngIf="paymentOption==1" class="btn btn-brand" (click)="checkOut()" [disabled]="isbtnloading"><span *ngIf="isbtnloading"><i class="fa fa-spinner fa-spin"></i>Loading...</span><span *ngIf="!isbtnloading"> PROCEED TO PAY</span></button>
+                </div>
+                 </div>
+          </div>
+        </div> 
+        
+    
+    
+
+    <div  *ngIf="(getMTestList()?.length > 0)&&(suggestedTests?.length > 0)">
+    <h3>CUSTOMER WHO BOUGHT ITEMS IN YOUR CART ALSO BOUGHT</h3>
+    <div class="row package_row">
+        <owl-carousel #packcaro   [options]="{items: 3, dots: false, navigation: false,loop:true,autoplay:true,responsive:{'0':{items:1},'600':{items:2},'1000':{items:3}}}"   [carouselClasses]="['owl-theme', 'row', 'sliding']">
+            <div class="package_container" *ngFor="let test of suggestedTests">
+                <div class="package " style="padding:10px 20px;" >
+                    <p class="sub_heading-brand ft-16px m-b-15">{{test.test_name}}</p>
+                    <ul class="list-ul-default">
+                       
+                        <li><strong>Also Known As</strong>: <span title="{{test.test_other_names}}">{{test.test_other_names}} </span></li>
+                        <li><strong>What is Collected</strong>: {{test.specimen}}</li>
+                        <li><strong>Parameters Count</strong>: {{test.parameter_count}}</li>
+                        
+                     </ul>
+                       <a class="pull-right text-brandcolor" (click)="getTestDetails(test.tid)">Know More</a>
+                                  <div class="clearfix"></div>
+                                  
+                        <div class="package_price">
+                                  <h4><i class="fa fa-rupee"></i> 190</h4>
+                        </div>
+                              <div class="package_cart">
+                                  <button *ngIf="!isadded(test.tid)" class="btn btn-brand btn-sm" (click)="getAddTestCart(test)"><img src="./assets/images/iconimages/carticon.png"/> ADD TO CART</button>
+                                  <button *ngIf="isadded(test.tid)" class="btn btn-brand btn-sm"><img src="./assets/images/iconimages/carticon.png"/> ADDED</button>
+                              </div>
+                              
+                  </div>
+              </div>
+            
+             
+            
+             
+            </owl-carousel>
+                  
+
+    </div>
+    </div>
+          
+     </div>
+     <div  *ngIf="ismobileview" class="container">
+        <div class="row" style="">
+             <div class="col-md-12">
+                  <h1 class="bigtitle">CART SUMMARY</h1>
+              </div>
+          </div>
+          
+      <div class="row" style="border-bottom:1px solid #eee" *ngFor="let item of getMTestList()">
+        
+        <div class="col-md-12">
+          <div class="row">
+            <div class="col-md-4 col-xs-10">
+              <p class="sub_heading-brand m-b-15" style="font-size:  18px;">{{item.test_name}}</p>
+              
+            </div>
+            <div  class="col-md-4 col-xs-2 text-center">	
+                      <a  class="text-brandcolor" style="line-height:  0;font-size:  18px;margin-top: -5px;" (click)="removeItem(item.tid)">
+                        <i  class="fa fa-trash" style="line-height:  0;"></i>
+                      </a>
+            </div>
+            <div  class="col-md-4 col-xs-6">
+                <div  style="width: 40px;margin-left:auto;">
+                  <div  class="input-group" style="border:  0;margin:  0 auto;">
+                    <span  class="input-group-addon" style="padding: 0;border:  0;background-color:transparent;padding-right: 5px;font-size: 20px;" (click)="testQuantMinus(item)">
+                    -
+                    </span>
+                    <input  class="form-control theme" readonly="true" style="width: 30px;padding:  0;text-align:  center;font-size: 18px;height: 25px;" type="text" value="{{getTestQuant(item.tid)}}">
+                    <span  class="input-group-addon" style="padding: 0;padding-left: 5px;border: 0;background-color: transparent;font-size: 20px;" (click)="testQuantPlus(item)">+
+                    
+                    </span>
+                  </div>
+                </div>
+            
+            </div>
+            <div  class="col-md-4 col-xs-6">					
+                <h4  style="
+          text-align: right;
+          font-weight: 700;
+          font-size: 17px;
+          margin: 3px;
+          "><small ><i  class="fa fa-rupee"></i></small> {{getTestQuant(item.tid)*item.test_finalpr}}</h4>					
+                </div>
+                
+            
+          </div>
+          <div class="row" style="margin-top:10px;">
+            <div class="col-md-12">
+              <h5 style="margin:0 0 10px 0">Who is the test for ? </h5>
+            </div>
+          </div>
+          
+          
+        </div>
+        
+        <div class="row" style="margin-bottom:15px; margin-left:-10px;"  *ngFor="let mem of getSelMem(item.tid)">
+          
+            <div class="col-md-1 col-xs-1" style="padding-right:5px">
+              <div class="form-group" style="margin-top:15px">
+                <input class="form-control" style="height: 18px;" type="checkbox" checked="checked" (change)="setFamilyMember1(mem.uid, item.tid,$event, item.test_name)">
+              </div>			
+            </div>
+            <div class="col-md-10 col-xs-10 bg_light_gray" style="padding-left:10px">
+              <div class="row" style="padding:8px 0px">
+                <div class="col-md-4">
+                  <h4><strong>{{getUserName(mem.user_name)}} </strong></h4>
+                  
+                </div>
+                <div class="col-md-4" style="min-height:80px">
+                  <div>
+                      <label class="radio-inline"><input type="radio" name="optradio_{{item.tid}}_{{mem.uid}}" [value]="1" [checked]="1==sel_type[item.tid][mem.uid]" (click)="getLabAddress(1,item.tid,mem.uid)" [disabled]="item.is_home_collection===2">Home Collection</label>
+                      
+                      <label class="radio-inline"><input type="radio" name="optradio_{{item.tid}}_{{mem.uid}}" [value]="2" [checked]="2==sel_type[item.tid][mem.uid]" (click)="getLabAddress(2,item.tid,mem.uid)">Visit Center</label>
+
+                  </div>
+                  <div style="padding:10px 0">
+                      <div class="input-group pull-left" style="width:50%; padding-right:5px">
+                        
+                        <input class="form-control" style="float:none" placeholder="Select a date" ngx-mydatepicker name="user_dob"
+                        [(ngModel)]="sel_date[item.tid][mem.uid]" [options]="myOptions"  (dateChanged)="setDate($event,item.tid,mem.uid)" #addDate="ngx-mydatepicker" readonly="true"/>
+                        <span class="input-group-addon" id="basic-addon2"  (click)="addDate.toggleCalendar()"><i class="fa fa-calendar" ></i></span>
+                      </div>
+                      <div class="input-group  pull-left" style="width:50%" (change)="setTime($event.target,item.tid,mem.uid)">
+                        <select class="form-control input-sm">
+                        <option *ngFor="let item of getValidTimeSlots(item.tid,mem.uid)" value="{{item.slot}}">{{item.display}}</option>
+                        </select>
+                        <span class="input-group-addon" id="basic-addon2"><i class="fa fa-clock-o"></i></span>
+                      </div>
+                      <div class="clearfix"></div>
+                    </div>
+                </div>
+                <div class="col-md-4" style="min-height:80px">
+                    <div *ngIf="locationhcset(item.tid,mem.uid)">
+                      <select class="form-control input-sm" style="background-color: #dcdcdc;
+          color: #f05b25;
+          box-shadow: none;
+          border: 0;
+          padding: 0;
+          font-size: 15px;" (click)="setTestLocation1($event.target.value, item.tid,mem.uid)">
+                      
+                          <option *ngFor="let loc of getSelLoc(item.tid,mem.uid)" value="{{loc.area_id}}" selected="true">{{loc.display_type}}</option>
+                          <option *ngFor="let loc of getNonSelLoc(item.tid,mem.uid)" value="{{loc.area_id}}" >{{loc.display_type}}</option>
+                       
+                      </select>
+                      <p >Address: {{sel_locations[item.tid][mem.uid].address}},{{sel_locations[item.tid][mem.uid].area}},{{sel_locations[item.tid][mem.uid].city}}</p>
+                    </div>
+                    <div *ngIf="locationwiset(item.tid,mem.uid)">
+                        <select class="form-control input-sm" style="background-color: #dcdcdc;
+            color: #f05b25;
+            box-shadow: none;
+            border: 0;
+            padding: 0;
+            font-size: 15px;" (click)="setTestLocation1($event.target.value, item.tid,mem.uid)">
+            <option *ngFor="let loc of getSelLabLoc(item.tid,mem.uid)" value="{{loc.area_id}}" selected="true">{{loc.location_name}}</option>
+            <option *ngFor="let loc of getNonSelLabLoc(item.tid,mem.uid)" value="{{loc.area_id}}" >{{loc.location_name}},{{loc.address}},{{loc.area}},{{loc.city}}</option>
+                        </select>
+                        <p *ngIf="sel_lablocation[item.tid][mem.uid]?.location_name !== undefined">Address:{{sel_lablocation[item.tid][mem.uid].location_name}},{{sel_lablocation[item.tid][mem.uid].address}},{{sel_lablocation[item.tid][mem.uid].area}},{{sel_lablocation[item.tid][mem.uid].city}}</p>
+                        <p *ngIf="sel_lablocation[item.tid][mem.uid]?.location_name == undefined">Address: Please Select The Lab Location above..</p>
+                      </div>
+                  </div>
+              </div>
+            </div>
+          
+        </div>
+        <div class="row" style="margin-bottom:15px">
+          <div class="col-md-11">	
+            
+              <span *ngIf="getNonSelMem(item.tid).length > 0" style="margin-left: 10px;font-weight:700;color: #f05b25;">Why not book this test for your family too? It's good to know.</span>
+              <div class="row" style="margin:0" >
+                <div class="col-md-4 col-xs-6" *ngFor="let mem of getNonSelMem(item.tid)">
+                  <div class="row">
+                    <div class="col-xs-2 text-right" style="padding-right:3px">
+                      <input class="form-control" type="checkbox"  (change)="setFamilyMember1(mem.uid, item.tid,$event, item.test_name)">
+                    </div>
+                    <div class="col-xs-10">
+                      <input class="form-control theme" value="{{getUserName(mem.user_name)}}">
+                    </div>
+                  </div>
+                </div>
+                
+                
+                <div class="col-md-4 col-xs-12" style="padding-top:10px;">
+                  <a class="link-brand" data-toggle="modal" data-target="#add_family">+ Add Member</a>
+                  
+                </div>
+                
+              </div>
+          
+          </div>	
+        </div>
+        
+      </div>
+      <div class="row" *ngIf="(getMTestList()?.length == 0)">
+          <table class="table">
+            <hr>
+             <tr><td style="text-align:center"><span class="sub_heading-brand ft-16px m-b-15">"Knowing Your Health Is <br>Half The Cure!!"</span><br><span><a href="./book">Add Tests to your cart</a></span></td></tr>
+             
+             <hr>
+          </table>
+        </div>
+      <div class="col-md-12" *ngIf="(getMTestList()?.length > 0)">
+          <div class="row">
+            <div table="col-md-12" style="padding:20px">
+               <table class="payment_details_table" style="width:100%">
+                
+                
+                <tbody><tr>
+                  <td  class="text-right">Testing Charges</td>
+                  <th class="text-right" style="width:100px"><small><i class="fa fa-rupee"> </i></small>&nbsp;{{getTotalPricesUp()}}</th>
+                </tr>
+                <tr>
+                  <td  class="text-right">Home Collection Charges</td>
+                  <th class="text-right" style="width:100px"><small><i class="fa fa-rupee"> </i></small>&nbsp;{{getHomeVisitCharges()}}</th>
+                </tr>
+                
+                <tr>
+                  <td  class="text-right"><h4 style="margin:0">Total Amount to be paid</h4></td>
+                  <td class="text-right text-brandcolor" style="width:100px"><h3 style="margin:0"><small><i class="fa fa-rupee"> </i></small> {{getTotalPricesUp()}}</h3></td>
+                </tr>
+              </tbody></table>
+            </div>
+            <div table="col-md-12">
+              <div class="row" style="padding:20px 20px;">
+              
+              <div class="row" style="padding:20px 0;">
+                  <div class="col-md-4 text-right">
+                    Select Payment Option
+                  </div>
+                  <div class="col-md-4 text-right">
+                    <input type="radio" name="paymentOption"  value="1" (click)="mypayotp('1')" checked="checked"/> Pay Online
+                  </div>
+                  <div class="col-md-4 text-right">
+                      <input type="radio" name="paymentOption" value="2" (click)="mypayotp('3')"/> Pay by Cash
+                    </div>
+                   </div>
+              <div class="col-md-12 text-center">
+                <button *ngIf="paymentOption==3" class="btn btn-brand" (click)="checkOut()" [disabled]="isbtnloading"><span *ngIf="isbtnloading" ><i class="fa fa-spinner fa-spin"></i>Loading...</span><span *ngIf="!isbtnloading"> BOOKING</span></button>
+                <button *ngIf="paymentOption==1" class="btn btn-brand" (click)="checkOut()" [disabled]="isbtnloading"><span *ngIf="isbtnloading"><i class="fa fa-spinner fa-spin"></i>Loading...</span><span *ngIf="!isbtnloading"> PROCEED TO PAY</span></button>
+            
+              </div>
+               </div>
+            </div>
+          </div>
+        </div>
+  </div>
+</div>
+
+
+
+
+

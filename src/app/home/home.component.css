@@ -1,0 +1,232 @@
+/* .maincen{
+    text-align: center;
+    float: middle;
+}
+div.owl-nav.disabled{
+   display: none;
+} */
+
+/*.navigations_div img{
+	width:35%;
+}
+.slider_images .owl-controls{
+position: absolute;
+width: 100%;
+bottom: 0;
+}
+.slider_images.owl-theme .owl-dots .owl-dot.active span, .owl-theme .owl-dots .owl-dot:hover span {
+    background: #f05b25;
+}
+.slider_images.owl-theme .owl-dots .owl-dot span {
+    background: #767676;
+}
+.navigations_div{
+	position: absolute;
+	width: 100%;
+	top: 40%;
+	z-index: 1024;
+	padding: 0 10%;
+	
+}
+.presentaion_wrapper .navigations_div {
+padding: 0 3%;
+}
+.presentaion_wrapper .navigations_div img{
+	width:20%
+}
+.modal-dialog{
+	z-index: 999;
+		
+}
+.model-body{
+	padding: 0px;
+	
+}
+a.playbutton{
+	cursor: hand;
+ }
+ .owl-carousel.owl-loaded{
+	 margin: 0 !important;
+ }
+*/
+
+.nav_sub_menu .menu_image{
+	    width: 80px;
+    float: left;
+    margin-right: 15px;
+	margin-bottom:25px;
+}
+.nav_sub_menu a:hover{
+	text-decoration:none;
+}
+.nav_sub_menu .menu_list_ul{
+	padding:0;
+	padding-top:5px;
+}
+.nav_sub_menu .menu_list_ul li{
+	list-style:none;
+}
+.nav_sub_menu .menu_list_ul li a{
+	color:#000;
+}
+.nav_sub_menu .menu_list_ul li.list_heading,.nav_sub_menu .menu_list_ul li.link_more {
+    padding-bottom: 5px;
+}
+.nav_sub_menu .menu_list_ul li.list_heading a{
+	text-transform:uppercase;
+	padding-top:5px;
+}
+.nav_sub_menu .menu_list_ul li.list_heading a,.nav_sub_menu .menu_list_ul li.link_more a{
+	font-size: 16px;
+    font-weight: 600;
+	color: #f05b25;
+}
+.nav_sub_menu .menu_list_ul li.link_more a{
+	font-size: 14px;
+}
+.dropdown-submenu {
+    position: relative;
+}
+
+.dropdown-submenu .dropdown-menu {
+    top: 0;
+    left: 100%;
+    margin-top: -1px;
+}
+.submenu-level1,.submenu-level2{
+	border:1px solid #f05b25;
+}
+.submenu-level1>li{
+	padding: 5px 3px;
+    margin:5px;
+	border-bottom:1px solid #eee;
+}
+.submenu-level1>li:last-child{
+	border:0;
+}
+.submenu-level1>li>a{
+	font-weight:600;
+}
+.submenu-level1>li>a:hover,.submenu-level1>li>a:focus,.submenu-level1>li>a:active{
+	background-color:transparent;
+	color:#f05b25;
+	border:0;
+}
+.submenu-level2{
+	margin-left:5px;
+	top:-10px;
+	width:auto;
+	height:auto;
+	
+}
+.search_dropdown{
+	padding:0;
+	margin:0;
+}
+.search_ul{
+	padding:0;
+	margin:0;
+}
+.search_ul li{
+	list-style:none;
+	padding:3px 15px;
+	border-bottom:1px solid #d2d2d2;
+	
+}
+.search_ul li.heading{
+	background-color:#eee;
+	font-weight:600;
+	font-size:16px;
+}
+.search_ul li a{
+	font-weight: 400;
+    font-size: 13px;
+    color: #000;
+}
+.search_ul li a:hover{
+text-decoration:none;
+}
+
+.search_ul li:hover{
+color:#f05b25;
+background-color:#eee;
+}
+
+.navigations_div img{
+	/* width:35%; */
+}
+
+/*.slider_images .owl-controls{
+position: absolute;
+width: 100%;
+bottom: 0;
+}*/
+.slider_coursel_content .navigations_div img{
+	width:20px;
+}
+.slider_coursel_content .navigations_div .prev{
+	display: inline-block;
+    
+    float:left;
+    padding-left: 70px;
+}
+.slider_coursel_content .navigations_div .next{
+	display: inline-block;
+    float:right;
+    text-align:  right;
+    
+}
+.slider_images .owl-controls {
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+}
+
+.slider_images.owl-theme .owl-dots .owl-dot.active span, .owl-theme .owl-dots .owl-dot:hover span {
+    background: #f05b25;
+}
+.slider_images.owl-theme .owl-dots .owl-dot span {
+    background: #767676;
+}
+.navigations_div{
+	position: absolute;
+	width: 100%;
+	top: 40%;
+	z-index: 1024;
+	/* padding: 0 10%; */
+	
+}
+.presentaion_wrapper .navigations_div {
+padding: 0 3%;
+}
+.presentaion_wrapper .navigations_div img{
+	width:20%
+}
+.testimonial_containter .fa.fa-quote-left,.testimonial_containter .fa.fa-quote-right{
+	color:#f05b25;
+}
+a{
+    cursor: pointer !important;
+}
+.pckname{
+	width: 15px;
+	height: 10px;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+}
+
+input.form-control.theme.otp_input {
+            margin: 10px;
+            font-size: 20px;
+            height: 40px;
+            text-align: center;
+		  }
+		  .owl-carousel .owl-item {
+		    width: 620px !important; 
+			/* margin-right: 150px; */
+		  }
+
+
+		

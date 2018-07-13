@@ -1,0 +1,29 @@
+.profile_table tr td{
+	padding:10px;
+}
+.my-pagination  .ngx-pagination .current {
+	background: #f05b25 ;
+	
+}
+.pagination_theme{
+	margin:15px;
+}
+.pagination_theme a.w3-button{
+	padding:8px 13px;
+	font-size:16px;
+	color:#777777;
+	font-weight:600;
+}
+.pagination_theme a.w3-button:hover,.pagination_theme a.current{
+	color:#f05b25;
+	text-decoration:none;
+}
+
+.profile_table>tbody{
+	vertical-align: top !important;
+}
+.ohrowhead h5{
+font-weight: 700;
+
+}
+	

@@ -1,0 +1,57 @@
+
+<div class="content" style="min-height:800px;">
+  <div class="container">
+      <div class="row" style="">
+          <div class="col-md-12 text-center">
+              <div class="form-group" style="margin: 20px 0px;">
+                    <div class="input-group search_input-group">
+                      <input #searchString type="text" class="form-control input-lg dropdown-toggle" data-toggle="dropdown" placeholder="Search for Pathology Tests, Scans, MRI, CT etc." aria-describedby="basic-addon2" aria-expanded="true" [formControl]="searchTerm" (keyup.enter)="searchBasedOnString(searchTerm.value)" [(ngModel)]=filterKey value="{{ser_string}}">
+
+                     <span  *ngIf="searchString.value.length>0" class="" style="color: #f05b25;position: absolute;top: 12px;right: 60px;z-index: 2;padding-right: 10px;cursor:pointer;" (click)="searchString.value=''">X Clear</span>
+
+                    <div class="dropdown-menu search_dropdown" style="width:100%;max-height:250px;overflow-y:auto;    z-index: 1999;">
+                        <ul class="search_ul" >
+                               
+                            <li class="heading" *ngIf="searchResult.length > 0"><i class="fa fa-history"></i> Tests Related to {{searchTerm.value}}</li>
+                            <li *ngFor="let item of searchResult"><a (click)="select(item.test_name,'test')">{{item.test_name}}</a></li>
+                            
+                            <li class="heading" *ngIf="((_packagesSearchResult.length > 0)&&(mpckgshow===true))"><i class="fa fa-history"></i> Packages Related to {{searchTerm.value}}</li>
+                            <li *ngFor="let item of _packagesSearchResult"><a (click)="select(item.package_name,'package')">{{item.package_name}}</a></li>
+  
+                            <li class="heading" *ngIf="((_packagesSearchResult.length ==0) && (searchResult.length==0) &&(searchString.value===''))">Popular Tests</li>
+                            <li *ngFor="let test of getPopularTests(searchString.value)" (click)="select(test,'test')">{{test}}</li>
+  
+                        </ul>
+                      </div>
+  
+                      <span class="input-group-addon" id="basic-addon2" style="background-color:#fff; border:0px;"  (click)="searchBasedOnString(searchTerm.value)"> 
+                            <span><i class="fa fa-circle" style="color:#EEEEED ; font-size: 50px;margin-top: -7px;"></i></span>
+                            <div style="font-size: 35px;margin-top: -42px; color:#f05b25"><i class="fa fa-search"></i></div>
+                              
+                      </span>
+                    </div>
+  
+                </div>
+            </div>
+      <div class="col-md-12">
+        <div>
+          <h2 class="bigtitle"><img src="./assets/images/iconimages/teneticon.png" class="pull-left" style="margin: -2px 01px 30px 0px;    width: 40px !important; "> ITS GOOD TO KNOW WHY WE NEVER REST.</h2>
+        </div>
+        <div>
+          <h4><strong>MISSION</strong></h4>
+          <p>Tenet Diagnostics believes Knowing your health is half the cure. We make it easy to do so with our dedication to provide superior quality diagnostic services. We bring together cutting-edge technology and unparalleled experience under the Tenet banner. It is this expertise that physicians prefer for their patients, satisfied clients recommend to their family and friends, the employees are proud of and investors seek for long-term returns. </p>
+          <h4><strong>PRIMARY VALUE </strong></h4>
+          <p>Providing quality diagnostic services is our passion, improving the quality of lives is our reward. </p>
+          <h4><strong>VALUE STATEMENT</strong></h4>
+          <p>These values, which guide Tenet Diagnostic’s mission to this day, are an expression of the vision and intent of our founders. </p>		   
+        </div>
+      </div>
+     </div>
+     <div class="row">
+      <div class="col-md-12 text-center">
+        <img src="./assets/images/abouttenet.png" class="about_tenet_img" >
+      </div>
+     </div>	
+  </div>
+  </div>  
+  

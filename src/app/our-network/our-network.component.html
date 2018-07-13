@@ -1,0 +1,361 @@
+<div class="content" style="min-height:800px;">
+
+	<div class="container">
+			
+				  <div class="row" style="margin-top:30px; margin-bottom:0px;">
+						<div class="col-md-1"></div>
+						<div class="col-md-10 text-center">
+								<div class="form-group" style="margin: 20px 0px;">
+										<div class="input-group search_input-group">
+											<input #searchString type="text" class="form-control input-lg dropdown-toggle" data-toggle="dropdown" placeholder="Search for Pathology Tests, Scans, MRI, CT etc." aria-describedby="basic-addon2" aria-expanded="true" [formControl]="searchTerm" (keyup.enter)="searchBasedOnString(searchTerm.value)" [(ngModel)]=filterKey value="{{ser_string}}">
+											
+											<span  *ngIf="searchString.value.length>0" class="" style="color: #f05b25;position: absolute;top: 12px;right: 60px;z-index: 2;padding-right: 10px;cursor:pointer;" (click)="searchString.value=''">X Clear</span>
+										  <div class="dropdown-menu search_dropdown" style="width:100%;max-height:250px;overflow-y:auto;    z-index: 1;">
+											  <ul class="search_ul" >
+													 
+												  <li class="heading" *ngIf="searchResult?.length > 0"><i class="fa fa-history"></i> Tests Related to {{searchTerm.value}}</li>
+												  <li *ngFor="let item of searchResult"><a (click)="select(item.test_name,'test')">{{item.test_name}}</a></li>
+												  
+												  <li class="heading" *ngIf="((_packagesSearchResult?.length > 0)&&(mpckgshow===true))"><i class="fa fa-history"></i> Packages Related to {{searchTerm.value}}</li>
+												  <li *ngFor="let item of _packagesSearchResult"><a (click)="select(item.package_name,'package')">{{item.package_name}}</a></li>
+					  
+												  <li class="heading" *ngIf="((_packagesSearchResult?.length ==0) && (searchResult.length==0) &&(searchString.value===''))">Popular Tests</li>
+												  <li *ngFor="let test of getPopularTests(searchString.value)" (click)="select(test,'test')">{{test}}</li>
+					  
+											  </ul>
+											</div>
+					  
+											<span class="input-group-addon" id="basic-addon2" style="background-color:#fff; border:0px;"  (click)="searchBasedOnString(searchTerm.value)"> 
+												  <span><i class="fa fa-circle" style="color:#EEEEED ; font-size: 50px;margin-top: -7px;"></i></span>
+												  <div style="font-size: 35px;margin-top: -42px; color:#f05b25"><i class="fa fa-search"></i></div>
+													
+											</span>
+										  </div>
+					  
+									  </div>
+						</div>	
+					</div>        
+			
+			<div class="row" style="">
+			   <div class="col-md-12">
+					  <h1 class="bigtitle">OUR NETWORK</h1>
+				</div>
+			</div>
+			<div class="row" style="">
+				 <h2 class="titles"><img src="./assets/images/iconimages/teneticon.png" height="35" style="margin:0px 20px 10px 0px; "> ALL SERVICES UNDER ONE BANNER.</h2>
+			</div>	
+			<div class="row" style="">
+					<div class="col-md-12">
+						<div class="col-md-6">
+						<h2 class="text-brandcolor">TENET HUB</h2>
+						<h4>FOR 360° DIAGNOSTICS</h4>
+							<p>Tenet Hub is our flagship brand, where we bring together state-of-the-art equipment, premier medical software and health experts for accurate, reliable testing and results across Pathology, Radiology and Imaging. When your patients turn to you for guidance, turn to us for quick, reliable information to help you make the right diagnosis.</p>
+						</div>
+						<div class="col-md-6">
+						<h2 class="text-brandcolor">TENET PRO</h2>
+						<h4>EXPERTS IN RADIOLOGY &amp; PATHOLOGY</h4>
+							<p>Driven by the desire to offer a comprehensive range of high-quality diagnostics to everyone, we are changing the way Radiology and Pathology testing is accessed. At Tenet Pro, we employ the latest R&amp;D and technology to all our modalities to put you on your way to better health. With an exhaustive range of affordable, best-in-class services, we bring to you diagnostics that offer health results for overall wellbeing.</p>
+						</div>
+					</div>
+			</div>
+			<div class="row" style="">
+					<div class="col-md-12">
+						<div class="col-md-6">
+						<h2 class="text-brandcolor">TENET EXPRESS</h2>
+						<h4>QUICK. ACCESSIBLE. RESPONSIVE.</h4>
+							<p>Busy lives can make even the most basic diagnostics difficult to access. That’s why we are proud to bridge the gap between your patients and accurate testing. Tenet Express locations can be found in multiple neighbourhoods, bringing the most common diagnostic facilities within minutes of your place of work.</p>
+						</div>
+						<div class="col-md-6">
+						<h2 class="text-brandcolor">TENET DOORSTEP</h2>
+						<h4>QUICK. CONVENIENT. RELIABLE.</h4>
+							<p>What defines contemporary living is the ease of doing things. We have everything at the touch of a button, whether it’s ordering food or getting groceries home delivered. Why should healthcare be any different? For today’s busy and demanding times, we proudly present Tenet Doorstep: an Application based interface which allows the patient or client to order, pay and access reports of their tests from the comfort of their homes and offices. Our qualified collection experts will pick up samples and handle all the logistics, making it easier for the patients to get the information they can count on.</p>
+						</div>
+					</div>
+			</div>
+			<hr>
+			<h2 class="titles"><img src="./assets/images/iconimages/teneticon.png" height="35" style="margin:0px 20px 10px 0px; ">THE BELOW LIST FURTHER EXPLAINS OUR VARIOUS CENTERS AND THEIR SERVICE OFFERINGS. </h2>
+	<section style="margin-top:25px">
+			<div class="row serviceoffering_list_row">
+				<div class="col-md-12">
+					<div class="row heading">
+						<div class="col-xs-6 text-center">
+							<h3>SERVICE OFFERINGS</h3>
+						</div>
+						<div class="col-xs-2 text-center">
+							<h3>HUB</h3>
+						</div>
+						<div class="col-xs-2 text-center">
+							<h3>PRO</h3>
+						</div>
+						<div class="col-xs-2 text-center">
+							<h3>EXPRESS</h3>
+						</div>
+					</div>
+					<div class="row content_row">
+						<div class="col-xs-6">
+							<div class="service_div">
+								<div class="service_img_div">
+									<img src="./assets/images/iconimages/facilities/12.png" width="100%">
+								</div>
+								<span class="service_name">PATHOLOGY</span>
+							</div>
+						</div>
+						<div class="col-xs-2 text-center">
+							<img src="./assets/images/iconimages/facilities/mark.png" width="45%">
+						</div>
+						<div class="col-xs-2 text-center">
+							<img src="./assets/images/iconimages/facilities/mark.png" width="45%">
+						</div>
+						<div class="col-xs-2 text-center">
+							<img src="./assets/images/iconimages/facilities/mark.png" width="45%">	
+						</div>
+					</div>
+					<div class="row content_row">
+						<div class="col-xs-6">
+							<div class="service_div">
+								<div class="service_img_div">
+									<img src="./assets/images/iconimages/facilities/102.png" width="100%">
+								</div>
+								<span class="service_name">MRI</span>
+							</div>
+						</div>
+						<div class="col-xs-2 text-center">
+							<img src="./assets/images/iconimages/facilities/mark.png" width="45%">
+						</div>
+						<div class="col-xs-2 text-center">
+							
+						</div>
+						<div class="col-xs-2 text-center">
+							
+						</div>
+					</div>
+					<div class="row content_row">
+						<div class="col-xs-6">
+							<div class="service_div">
+								<div class="service_img_div">
+									<img src="./assets/images/iconimages/facilities/5.png" width="100%">
+								</div>
+								<span class="service_name">MDCT</span>
+							</div>
+						</div>
+						<div class="col-xs-2 text-center">
+							<img src="./assets/images/iconimages/facilities/mark.png" width="45%">
+						</div>
+						<div class="col-xs-2 text-center">
+						
+						</div>
+						<div class="col-xs-2 text-center">
+							
+						</div>
+					</div>
+					<div class="row content_row">
+						<div class="col-xs-6">
+							<div class="service_div">
+								<div class="service_img_div">
+									<img src="./assets/images/iconimages/set2/2.png" width="100%">
+								</div>
+								<span class="service_name">X-RAY</span>
+							</div>
+						</div>
+						<div class="col-xs-2 text-center">
+							<img src="./assets/images/iconimages/facilities/mark.png" width="45%">
+						</div>
+						<div class="col-xs-2 text-center">
+							<img src="./assets/images/iconimages/facilities/mark.png" width="45%">
+						</div>
+						<div class="col-xs-2 text-center">
+							
+						</div>
+					</div>
+					<div class="row content_row">
+						<div class="col-xs-6">
+							<div class="service_div">
+								<div class="service_img_div">
+									<img src="./assets/images/iconimages/facilities/1.png" width="100%">
+								</div>
+								<span class="service_name">BMD</span>
+							</div>
+						</div>
+						<div class="col-xs-2 text-center">
+							<img src="./assets/images/iconimages/facilities/mark.png" width="45%">
+						</div>
+						<div class="col-xs-2 text-center">
+							<img src="./assets/images/iconimages/facilities/mark.png" width="45%">
+						</div>
+						<div class="col-xs-2 text-center">
+						
+						</div>
+					</div><div class="row content_row">
+						<div class="col-xs-6">
+							<div class="service_div">
+								<div class="service_img_div">
+									<img src="./assets/images/iconimages/set2/3.png" width="100%">
+								</div>
+								<span class="service_name">ULTRASOUND</span>
+							</div>
+						</div>
+						<div class="col-xs-2 text-center">
+							<img src="./assets/images/iconimages/facilities/mark.png" width="45%">
+						</div>
+						<div class="col-xs-2 text-center">
+							<img src="./assets/images/iconimages/facilities/mark.png" width="45%">
+						</div>
+						<div class="col-xs-2 text-center">
+							
+						</div>
+					</div><div class="row content_row">
+						<div class="col-xs-6">
+							<div class="service_div">
+								<div class="service_img_div">
+									<img src="./assets/images/iconimages/set2/5.png" width="100%">
+								</div>
+								<span class="service_name">TMT</span>
+							</div>
+						</div>
+						<div class="col-xs-2 text-center">
+							<img src="./assets/images/iconimages/facilities/mark.png" width="45%">
+						</div>
+						<div class="col-xs-2 text-center">
+							<img src="./assets/images/iconimages/facilities/mark.png" width="45%">
+						</div>
+						<div class="col-xs-2 text-center">
+							
+						</div>
+					</div><div class="row content_row">
+						<div class="col-xs-6">
+							<div class="service_div">
+								<div class="service_img_div">
+									<img src="./assets/images/iconimages/set2/6.png" width="100%">
+								</div>
+								<span class="service_name">PULMONARY<br>FUNCTION</span>
+							</div>
+						</div>
+						<div class="col-xs-2 text-center">
+							<img src="./assets/images/iconimages/facilities/mark.png" width="45%">
+						</div>
+						<div class="col-xs-2 text-center">
+							<img src="./assets/images/iconimages/facilities/mark.png" width="45%">
+						</div>
+						<div class="col-xs-2 text-center">
+						
+						</div>
+					</div><div class="row content_row">
+						<div class="col-xs-6">
+							<div class="service_div">
+								<div class="service_img_div">
+									<img src="./assets/images/iconimages/facilities/102.png" width="100%">
+								</div>
+								<span class="service_name"> ECG / ENMG / EEG </span>
+							</div>
+						</div>
+						<div class="col-xs-2 text-center">
+							<img src="./assets/images/iconimages/facilities/mark.png" width="45%">
+						</div>
+						<div class="col-xs-2 text-center">
+							<img src="./assets/images/iconimages/facilities/mark.png" width="45%">
+						</div>
+						<div class="col-xs-2 text-center">
+						
+						</div>
+					</div>
+					<div class="row content_row">
+						<div class="col-xs-6">
+							<div class="service_div">
+								<div class="service_img_div">
+									<img src="./assets/images/iconimages/facilities/08.png" width="100%">
+								</div>
+								<span class="service_name">2D ECHO</span>
+							</div>
+						</div>
+						<div class="col-xs-2 text-center">
+							<img src="./assets/images/iconimages/facilities/mark.png" width="45%">
+						</div>
+						<div class="col-xs-2 text-center">
+						
+						</div>
+						<div class="col-xs-2 text-center">
+						
+						</div>
+					</div>
+					<div class="row content_row">
+						<div class="col-xs-6">
+							<div class="service_div">
+								<div class="service_img_div">
+									<img src="./assets/images/iconimages/facilities/07.png" width="100%">
+								</div>
+								<span class="service_name">MAMMOGRAPHY</span>
+							</div>
+						</div>
+						<div class="col-xs-2 text-center">
+							<img src="./assets/images/iconimages/facilities/mark.png" width="45%">	
+						</div>
+						<div class="col-xs-2 text-center">
+						
+						</div>
+						<div class="col-xs-2 text-center">
+						
+						</div>
+					</div>
+					
+					
+				</div>
+				
+			</div>
+	</section>
+
+			<div class="row" style="margin-top:20px; margin-bottom:20px;">
+				<h2 class="titles"><img src="./assets/images/iconimages/teneticon.png" height="35" style="margin:0px 20px 10px 0px; ">OUR AVAILABLE LOCATIONS</h2>
+	
+				<div class="col-md-9">
+					<div class="map">
+				   <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15226.889077743617!2d78.4323039!3d17.4251111!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xd3540d9596607adf!2sTenet+Diagnostics!5e0!3m2!1sen!2sin!4v1529480987357" width="100%" height="450" frameborder="0" style="border:0" allowfullscreen=""></iframe>
+				  
+					</div>
+				</div>
+				<div class="col-md-3">
+					<div class="form-group">
+						<select class="form-control theme">
+							<option>HUB</option>
+						</select>
+					</div>
+					<div class="form-group">
+						<select class="form-control theme">
+							<option>BANJARA HILLS</option>
+						</select>
+					</div>
+					<ul class="tenet_details_ul list-group" style="height: 350px; overflow: hidden; outline: none; cursor: -webkit-grab; touch-action: none;">
+						<li>
+							<h4>TENET DIAGNOSTICS<br><span class="type">HUB</span></h4>
+							<p>8-2-269/4/B, Beside New Rainbow Children’s Hospital, 500 034, Road Number 2, Sagar Society, Sri Nagar Colony, Kamalapuri Colony, Banjara Hills, Hyderabad, Telangana 500034</p>
+						</li>
+						
+					</ul>
+				</div>
+			</div>
+			
+			
+			 <hr>
+			
+			 <div class="row" style="padding:30px 0;">
+					<div class="col-md-6 text-center " style="padding:20px">
+						 <button class="btn btn-brand btn-lg home_btn" (click)="getBookAnAppointment()" style="text-align:center;height: 70px;padding: 0 50px;width: 270px;">Book a Test</button>
+			
+					</div>
+					<div class="col-md-6 text-center left-border-brandcolor-light-2px" style="padding:20px">
+							<!-- tokenSet -->
+						<span *ngIf="tokenSet"><button class="btn btn-brand btn-lg home_btn" (click)="redir('./account/order-history')" style="text-align:center;height: 70px;padding: 0 50px;width: 270px;">Check Report <br> Status</button></span>  
+						<span *ngIf="!tokenSet">
+							
+							<button class="btn btn-brand btn-lg home_btn" (click)="getOTP()" style="text-align:center;height: 70px;padding: 0 50px;width: 270px;">Check Report <br> Status</button> 
+						</span>  
+						
+					</div>
+			 </div>
+			 
+			
+			<h4 class="text-center text-brandcolor">Join the 'It's Good to Know' regime. Follow us on our social media channels and get free health tips regularly. <br>Call us on 86880 86880.</h4>
+			<hr>
+		</div>
+	
+		
+</div>

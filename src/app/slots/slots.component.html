@@ -1,0 +1,15 @@
+<form class="form-inline">
+    <fieldset>
+      <div class="form-group" *ngIf="dates?.length > 0">
+        <div class="form-control " *ngFor="let date of dates" [ngClass]="{'form-control-lg': date===sel_date }" ><a href="javascript:void(0)" (click)="showSlots(date)">{{date.available_date}}</a></div>
+      </div>
+    </fieldset>
+</form>
+<hr>
+<form class="form-inline">
+    <fieldset>
+        <div class="form-group" *ngIf="slots?.length > 0"><div class="form-control" *ngFor="let slot of slots" [ngClass]="{'form-control-lg': slot===sel_slot }" (click)="bookSlot(slot.slots_list)"><a href="javascript:void(0)">{{slot.slots_list}}</a></div></div>      
+    </fieldset>
+</form>
+
+

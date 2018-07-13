@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="100px" height="100px" viewBox="0 0 500 500" enable-background="new 0 0 500 500" xml:space="preserve">
+<g>
+	<path fill="#F05B25" d="M457.238,265.693c0,119.899-97.188,217.09-217.093,217.09c-119.905,0-217.104-97.19-217.104-217.09
+		c0-119.923,97.198-217.116,217.104-217.116C360.051,48.578,457.238,145.771,457.238,265.693z">
+		<animateTransform 
+		attributeName="transform"
+		attributeType="XML"
+		type="rotate"
+		from="0 250 250"
+		to="360 250 250 "
+		dur="0.5s"
+		repeatCount="indefinite" />
+		</path>
+	<path fill="#FFFFFF" stroke="#F05B25" stroke-width="0.5" stroke-miterlimit="10" d="M477.583,245.345
+		c0,119.899-97.189,217.096-217.095,217.096c-119.906,0-217.103-97.196-217.103-217.096c0-119.922,97.197-217.111,217.103-217.111
+		C380.394,28.234,477.583,125.423,477.583,245.345z" />
+	
+		
+	<g>
+		<g>
+			<path fill="#F05B25" d="M233.288,226.479c0,0,10.816-19.958,25.51-26.417c9.274-4.077,18.951-6.262,29.18-6.262
+				c6.612,0,12.689,0.526,18.241,1.577c5.543,1.068,10.886,2.78,16,5.146c5.114,2.372,9.605,5.551,13.47,9.545
+				c3.86,3.993,7.231,8.827,10.097,14.498c2.872,5.688,5.061,12.479,6.559,20.388c1.479,7.919,2.231,16.878,2.231,26.857v113.562
+				h-68.464v-97.097c0-8.735-0.909-15.597-2.714-20.585c-1.804-4.986-4.431-8.455-7.855-10.382
+				c-3.433-1.936-8.082-2.903-13.934-2.903c-8.485,0-15.158,3.025-20.036,9.074c-4.86,6.046-7.277,15.246-7.277,27.606">
+						<animateTransform id="firstmove" 
+						attributeName="transform"
+						attributeType="XML"
+						type="translate"
+						dur="2s"
+						values="0,15;0,-15;0,15"
+						repeatCount="indefinite" />
+			</path>
+		</g>
+		<path fill="#F05B25" d="M224.224,161.411c0,12.979-10.517,23.492-23.496,23.492c-12.987,0-23.504-10.513-23.504-23.492
+			c0-12.986,10.518-23.508,23.504-23.508C213.707,137.902,224.224,148.424,224.224,161.411z">
+			<animateTransform id="firstmove" 
+						attributeName="transform"
+						attributeType="XML"
+						type="translate"
+						dur="2s"
+						values="0,15;0,-15;0,15"
+						repeatCount="indefinite" />
+			</path>
+		<path fill="#F05B25" d="M340.582,139.772c0,19.371-15.684,35.072-35.073,35.072c-19.344,0-35.055-15.701-35.055-35.072
+			c0-19.358,15.711-35.064,35.055-35.064C324.898,104.708,340.582,120.414,340.582,139.772z">
+			<animateTransform id="firstmove" 
+						attributeName="transform"
+						attributeType="XML"
+						type="translate"
+						dur="2s"
+						values="0,15;0,-15;0,15"
+						repeatCount="indefinite" />
+			</path>
+		<path fill="#F05B25" d="M166.391,385.948V223.61c0-16.788,14.309-29.276,31.938-29.276h4.79c17.638,0,31.939,12.488,31.939,29.276
+			v162.338H166.391z">
+			<animateTransform id="firstmove" 
+						attributeName="transform"
+						attributeType="XML"
+						type="translate"
+						dur="2s"
+						values="0,15;0,-15;0,15"
+						repeatCount="indefinite" />
+			</path>
+	</g>
+</g>
+</svg>

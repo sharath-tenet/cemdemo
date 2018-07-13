@@ -1,0 +1,39 @@
+<div class="container">
+<div id="finalizedOrders">
+    <div class="tenet-loader" *ngIf="loading['getBills']" ><img src="./assets/images/monogram.svg"  /></div>                  
+  <div>
+    <div *ngFor="let item of myFinalizedOrders">
+      {{item.final_order_id}} =>{{item.final_order_no}} => <span *ngFor="let itm of item.order_nos;let i=index"><a (click)="getBillDetails(itm)">{{itm}}</a><span *ngIf="item.order_nos.length!==i+1">,</span></span>
+    </div>
+  </div>
+  <div *ngIf="myFinalizedOrders?.length == 0">
+    Sorry You have not order yet...!
+  </div>
+</div>
+
+<div id="billDetails" class="row " >
+    <div class="tenet-loader" *ngIf="loading['billDetails']" ><img src="./assets/images/monogram.svg"  /></div>
+    <div class="tenet-loader" *ngIf="loading['reportDownload']" ><img src="./assets/images/monogram.svg"  /></div>
+  <div *ngIf="billDetails.length > 0" table="col-md-12">
+      <div  class="form-group text-right">
+          <button class="btn btn-brand" title="This is only available after all the services are approved" (click)="downloadReport('',billDetails[0].order_no)">Dowload All Available Reports*</button>
+        </div>
+      <div id="patientDetails">
+          <table>
+            <tr><th>Bill. No. :</th><th>{{billDetails[0].order_no}}</th></tr>
+            <tr><th>Name :</th><td>{{partient_name}}</td></tr>
+            <tr><th>Status :</th><td>Active</td></tr>
+            
+          </table>
+        </div>
+        
+      <table class="table">
+      <th>Service Id.</th><th>Service Name</th><th>Service Amount</th><th>Status</th><th>Actions</th>
+      <tr *ngFor="let item of billDetails">
+        <td>{{item.tid}}</td><td>{{item.test_name}}</td><td>{{item.test_amount}}</td><td>{{item.test_status}}</td><td><span ><a href="javascript:void(0)" (click)="deleteService(billDetails[0].order_id,item.tid,billDetails[0].order_no)"><i class="fa fa-trash-o text-brandcolor"></i></a></span><span *ngIf="(item.test_status=='Approved')"><a  (click)="downloadReport(item.tid,billDetails[0].order_no)"><i title="Download the report" class="fa fa-arrow-down"></i></a></span></td>
+      </tr>
+    </table>
+  </div>
+
+</div>
+</div>

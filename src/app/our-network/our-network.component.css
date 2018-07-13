@@ -1,0 +1,112 @@
+.navigations_div img{
+	width:35%;
+}
+.slider_images .owl-controls{
+position: absolute;
+width: 100%;
+bottom: 0;
+}
+.slider_images.owl-theme .owl-dots .owl-dot.active span, .owl-theme .owl-dots .owl-dot:hover span {
+    background: #f05b25;
+}
+.slider_images.owl-theme .owl-dots .owl-dot span {
+    background: #767676;
+}
+.navigations_div{
+	position: absolute;
+	width: 100%;
+	top: 40%;
+	z-index: 1024;
+	padding: 0 10%;
+	
+}
+.presentaion_wrapper .navigations_div {
+padding: 0 3%;
+}
+.presentaion_wrapper .navigations_div img{
+	width:20%
+}
+.testimonial_slider_wrapper .navigations_div{
+	top:30%;
+}
+.testimonial_slider_wrapper .navigations_div img{
+	width:20%;
+}
+.testimonial_containter .fa-quote-left,.testimonial_containter .fa-quote-right{
+	color:#f05b25;
+}
+ .error{
+    color: red;
+    font-size: 20px;
+}
+.network_row .titles small{
+	color:#f05b25;
+	font-size:50%;
+}
+.search-bottom{
+    margin-top:0px;
+     margin-bottom:30px;
+}
+.search-top{
+    margin-top:30px; 
+    margin-bottom:0px;
+}
+.serviceoffering_list_row  .heading .col-xs-6,.serviceoffering_list_row .heading .col-xs-2{
+	background-color:#eee;
+}
+.serviceoffering_list_row  .heading h3{
+	color:#f05b25;
+	margin:15px 0;
+}
+.serviceoffering_list_row .content_row .service_div .service_img_div{
+	width:50px;height:50px; float:left; margin-right:10px; margin-top:10px; 
+}
+.serviceoffering_list_row .content_row .service_div .service_name{
+	color: #f05b25;
+    font-size: 22px;
+    margin: 18px 5px;
+    display: block;
+    float: left;
+}
+.serviceoffering_list_row>.col-md-12 .row{
+	margin-bottom:10px;
+	display:flex;
+}
+.serviceoffering_list_row>.col-md-12 .row >div{
+	border:1px solid #000;
+	
+}
+
+
+.search_dropdown{
+	padding:0;
+	margin:0;
+}
+.search_ul{
+	padding:0;
+	margin:0;
+}
+.search_ul li{
+	list-style:none;
+	padding:3px 15px;
+	border-bottom:1px solid #d2d2d2;
+	
+}
+.search_ul li.heading{
+	background-color:#eee;
+	font-weight:600;
+	font-size:16px;
+}
+.search_ul li a{
+	font-weight: 400;
+    font-size: 13px;
+    color: #000;
+}
+.search_ul li a:hover{
+text-decoration:none;
+}
+
+.search_ul li:hover{
+color:#f05b25;
+background-color:#eee;
+}

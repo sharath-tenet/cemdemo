@@ -1,0 +1,18 @@
+
+.rightCol {
+    position: absolute;
+    /* overflow: auto; */
+    left: 15%;
+    right: 0;
+    /* top: auto; */
+    /* bottom: 30px; */
+    width: 70%;
+    height: 100%;
+}
+table {
+    border: 1px solid black;
+   
+}
+body{
+    overflow-x: auto;
+}

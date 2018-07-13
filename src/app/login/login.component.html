@@ -1,0 +1,461 @@
+<div class="content" style="min-height:800px;">
+  <div class="container">
+    <div class="row" style="margin-top:50px;">
+      <div class="col-md-1"></div>
+      <div class="col-md-5">
+        <h1 class="bigtitle" style="    font-size: 30px;"><strong>CREATE AN ACCOUNT</strong> </h1>
+        <div class="row" style="padding-top:20px">
+          <div class="col-md-12">
+            <form #rgf="ngForm" novalidate (ngSubmit)="register(rgf,rgf.valid)" (keyup.enter)="register(rgf,rgf.valid)">
+              <div class="form-group">
+                <strong  class="form-text text-danger" *ngIf="mobilenoExists">Mobile Number already exists!</strong>
+                <div class="row">
+                <div class="form-group col-md-6">
+                      <input type="text" class="form-control theme" placeholder="First Name *" required name="first_name" ngModel #first_name="ngModel" pattern="[a-zA-Z ]*" minlength="3"/>
+                      <div style="color:#fc6107" 
+                                      *ngIf="first_name?.errors && (first_name.dirty || first_name.touched || rgf.submitted)">
+                              <p *ngIf="first_name?.errors.required">
+                                  The First Name is required
+                              </p>
+                             
+                              <p *ngIf="first_name?.errors.pattern">
+                                   The First Name should only consist of alphabets
+                              </p>
+                              <p *ngIf="first_name?.errors.minlength">
+                                   The First Name must be at least 3 characters long.
+                              </p> 
+                        </div> 
+
+                  </div>
+
+                  <div class="form-group col-md-6">
+                      <input type="text" class="form-control theme" placeholder="Last Name *" required name="last_name" ngModel #last_name="ngModel" pattern="[a-zA-Z ]*" minlength="3"/>
+                      <div style="color:#fc6107" 
+                                      *ngIf="last_name?.errors && (last_name.dirty || last_name.touched || rgf.submitted)">
+                                                  <p *ngIf="last_name?.errors.required">
+                                                      The Last Name is required
+                                                  </p>
+                                                 
+                                                  <p *ngIf="last_name?.errors.pattern">
+                                                       The Last Name should only consist of alphabets
+                                                  </p> 
+                                                  <p *ngIf="last_name?.errors.minlength">
+                                                     The Last Name must be at least 3 characters long.
+                                                  </p> 
+                      </div>
+
+                  </div>
+                </div>
+                </div>
+              <div class="form-group">
+                <input class="form-control theme" type="text" placeholder="Phone Number*" name="mobile" required ngModel #mobile="ngModel" pattern="[0-9]*"  minlength="10" maxlength="10">
+                <div style="color:#fc6107" *ngIf="mobile?.errors && (mobile.dirty || mobile.touched || rgf.submitted )">
+                                  <p *ngIf="mobile?.errors.required">
+                                      The Mobile Number is required
+                                  </p>
+                                  <p *ngIf="mobile?.errors.minlength">
+                                        Mobile number should be 10 digit
+                                  </p>
+                                  <p *ngIf="mobile?.errors.pattern">
+                                       Mobile number should be only numbers
+                                  </p>
+
+                </div>
+              </div>
+             
+               <div class="form-group text-right">
+                 <button  type="submit" #btn1 class="btn btn-brand btn-lg home_btn" data-toggle="modal" data-backdrop="false">Register with us</button>
+               </div>
+
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-1 hidden-xs hidden-sm" style="
+        
+        padding-top: 28px;
+      ">
+        <div style="
+        width: 1px;
+        height: 220px;
+        background-color: #b7b7b7;
+        margin:  0 auto;
+        position:relative;
+      "> <span style="    position: absolute;
+    top: 46%;
+    background-color: #fff;
+    right: -10px;">OR</span>
+        </div>
+      </div>
+
+    <div class="col-md-5">
+                <h1 class="bigtitle" style="    font-size: 30px;"><strong>LOGIN</strong> </h1>
+                <div class="row" style="padding-top:20px">
+                  <div class="col-md-12">
+                    <form #lf="ngForm" novalidate (ngSubmit)="loginSubmit(lf,lf.valid)">
+                        <div class="form-group">
+                            <strong  class="form-text text-danger" *ngIf="ivAuth">Invalid Authentication</strong>
+                             <input type="text" class="form-control theme"  placeholder="Phone Number*" name="phone" ngModel  required #phone="ngModel" pattern="^[6-9][0-9]{9}$" minlength="10" maxlength="10">
+
+                              <div style="color:#fc6107" 
+                                *ngIf="phone?.errors && (phone.dirty || phone.touched || lf.submitted)">
+                                      <p *ngIf="phone?.errors.required">
+                                          The Phone Number is required
+                                      </p>
+
+                                      <p *ngIf="phone?.errors.pattern">
+                                          Phone number should be only numbers and start with 6/7/8/9
+                                      </p> 
+
+                                      <p *ngIf="phone?.errors.minlength">
+                                             Phone number should be 10 digit
+                                      </p>
+                              </div>
+                        </div>
+                         <div class="form-group">
+                             
+                              <input type="password" class="form-control theme"  placeholder="Password*" name="password1" ngModel  required #password1="ngModel">
+
+                              <div style="color:#fc6107" 
+                            *ngIf="password1?.errors && (password1.dirty || password1.touched || lf.submitted || password1.minlength)">
+                                <p *ngIf="password1?.errors.required">
+                                    The Password is required
+                                </p>
+                              
+                            </div>
+
+                         </div>
+            
+                    <div class="form-group">
+                      <h5 class="titles text-left" style="font-weight:600; display:inline-block" data-toggle="modal" data-target="#forget_password_modal" data-backdrop="false">
+                      <span style="margin-top:15px;cursor:pointer">Forgot Password?</span>
+                      </h5>
+                    <button type="submit" class="btn btn-brand pull-right" >LOGIN</button>
+                    </div>
+            
+                  </form>
+
+<!-- forget password content-->
+<div id="forget_password_modal" class="modal theme_modal" role="dialog">
+  <div class="modal-dialog">
+    <form #forgotForm="ngForm" novalidate (ngSubmit)="getForgotPassword(forgotForm,forgotForm.valid)">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button class="btn modal_close_btn"  data-dismiss="modal" (click)="reset(forgotForm)" #forget_password_modal>&times;</button>
+        <h4 class="modal-title"></h4>
+         <h4 class="modal-title"><strong class="form-text text-success" *ngIf="sotp">OTP sent successfully</strong></h4>
+        <h4 class="modal-title"><strong class="form-text text-success" *ngIf="fotp">Failed to sent otp</strong></h4>
+      </div>
+      <div class="modal-body">
+    <div class="row">
+      <div class="col-md-12">
+        <h4 class="titles text-left" style="font-weight:600">Forgot Password? </h4>
+          <div>
+          <p class="text-center text-bold" style="padding:15px; font-weight:600" > Please enter your Registered Phone number.</p>
+          </div>
+         <div class="form-group">
+            <input class="form-control theme" ngModel required name="Mobile" #Mobile="ngModel" placeholder="Phone number" pattern="[0-9]*" minlength="10" maxlength="10"/>
+
+             <div style="color:#fc6107" *ngIf="Mobile?.errors && (Mobile.dirty || Mobile.touched || forgotForm.submitted )">
+                                  <p *ngIf="Mobile?.errors.required">
+                                      The Mobile Number is required
+                                  </p>
+                                  <p *ngIf="Mobile?.errors.minlength">
+                                        Mobile number should be 10 digit
+                                  </p>
+                                  <p *ngIf="Mobile?.errors.pattern">
+                                       Mobile number should be only numbers
+                                  </p>
+
+                </div>
+         </div>
+      </div>
+    </div>
+      </div>
+      <div class="modal-footer">
+       
+  <button  type="submit" #otpM class="btn btn-brand"  data-toggle="modal"  data-backdrop="false">Send OTP</button>
+ 
+      </div>
+    </div>
+  </form> 
+  </div>
+</div>
+<!--Forgot password content -->
+
+<!-- Otp modal  *ngIf="votp"-->
+<div  id="otp_modal" class="modal theme_modal" role="dialog">
+  <div class="modal-dialog">
+    <!-- otp content-->
+  <form #otpf="ngForm" novalidate (ngSubmit)="UpdatePasswordByOTP(otpf,otpf.valid);">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button class="btn modal_close_btn" data-dismiss="modal" #otp_modal (click)="reset2(otpf)">&times;</button>
+        <h4 class="modal-title"></h4>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+      <div class="col-md-12">
+       
+          <div>
+            <h4 class="text-center text-bold" style="padding:15px; font-weight:600">A One Time Password has been sent to your registered mobile number ending with {{otpString}}. <br>
+            Please enter the OTP to create your account.
+            </h4>
+              <h5 class="text-center text-bold" ><strong  class="form-text text-danger" *ngIf="ivotp">Invalid OTP</strong></h5>
+
+              <h5 class="text-center text-bold" ><strong  class="form-text text-success" *ngIf="false"> msg Otp sent to your registered mobile number.</strong></h5>
+          </div>
+         
+          <div class="text-center">
+            <div class="form-inline" style="width:300px;margin:0 auto;">
+              <input type="text" maxlength="1" oninput="this.value=this.value.replace(/[^0-9]/g,'');" class="form-control theme otp_input" name="term1" ngModel #term1 ="ngModel" style="width:50px; float:left;" (keyup)="autoTab($event)"/>
+              <input type="text" maxlength="1" oninput="this.value=this.value.replace(/[^0-9]/g,'');" class="form-control theme otp_input" name="term2" ngModel style="width:50px; float:left;" #term2 ="ngModel" (keyup)="autoTab($event)"/>
+              <input type="text" maxlength="1" oninput="this.value=this.value.replace(/[^0-9]/g,'');" class="form-control theme otp_input" name="term3" ngModel style="width:50px; float:left;" #term3="ngModel" (keyup)="autoTab($event)"/>
+              <input type="text" maxlength="1" oninput="this.value=this.value.replace(/[^0-9]/g,'');" class="form-control theme otp_input" name="term4" ngModel style="width:50px; float:left;" #term4 ="ngModel" (keyup)="autoTab($event)"/>
+            
+               <div class="clearfix"></div>
+            </div>
+          </div>
+
+          <input type="hidden" class="form-control theme" name="user_id" [(ngModel)] = "uid" ngModel #user_id="ngModel">
+<input type="hidden" class="form-control theme" name="Mobile2" [(ngModel)] = "phoneNo" ngModel #Mobile2="ngModel">
+          
+          <h4 class="titles" style="font-weight:600">SET PASSWORD</h4>
+              <div class="form-group">
+                <input type="password" class="form-control theme"  placeholder="Password*" minlength="6" name="pwd" ngModel  required #pwd="ngModel">
+                <div style="color:#fc6107" 
+                            *ngIf="pwd?.errors && (pwd.dirty || pwd.touched || otpf.submitted || pwd.minlength)">
+                              <p *ngIf="pwd?.errors.required">
+                                  The Password is required
+                              </p>
+                               <p *ngIf="pwd?.errors.minlength">
+                                   The Password must be at least 5 characters long.
+                              </p>
+                </div>
+              </div>
+              <div class="form-group">
+                    <input type="password" class="form-control theme" placeholder="Confirm Password" required 
+                         validateEqual="pwd"
+                        name="cpwd" ngModel
+                         #cpwd="ngModel" (keyup)="autoTab1($event, pwd.value.length)">
+
+                           <div [hidden]="cpwd.valid || cpwd.pristine" style="color:#fc6107">
+                            Passwords did not match
+                           </div>
+                           <div style="color:#fc6107" 
+                            *ngIf="cpwd.errors && (cpwd.dirty || cpwd.touched || otpf.submitted)">
+                              <p *ngIf="cpwd?.errors.required">
+                                  The Confirm password is required
+                              </p>
+                           </div>
+
+              </div> 
+       
+      </div>
+    </div>
+      </div>
+      <div class="modal-footer">
+      
+    <button type="submit" #createAcc class="btn btn-brand">Create Account</button>
+      </div>
+    </div>
+     </form> 
+  </div>
+</div>
+<!--Otp modal -->
+
+<!-- otp modal for login-->
+<div  id="otp_modal1" class="modal theme_modal" role="dialog">
+  <div class="modal-dialog">
+    <!-- otp content-->
+  <form #otpf1="ngForm" novalidate (ngSubmit)="UpdatePasswordByOTP1(otpf1,otpf1.valid,uid);">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button class="btn modal_close_btn" data-dismiss="modal" #otp_modal1 (click)="reset1(otpf1)">&times;</button>
+        <h4 class="modal-title"></h4>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+      <div class="col-md-12">
+       
+          <div>
+            <h4 class="text-center text-bold" style="padding:15px; font-weight:600">A One Time Password has been sent to your registered mobile number ending with XX435. <br>
+            Please enter the OTP to change password.
+            </h4>
+             <h5 class="text-center text-bold"><strong  class="form-text text-danger" *ngIf="ivotp">Invalid OTP</strong></h5>
+          </div>
+         
+          <div class="text-center">
+            <div class="form-inline" style="width:300px;margin:0 auto;">
+              <input type="text" maxlength="1" oninput="this.value=this.value.replace(/[^0-9]/g,'');" class="form-control theme otp_input" name="term1" ngModel #term1 ="ngModel" style="width:50px; float:left;" (keyup)="autoTab($event)"/>
+              <input type="text" maxlength="1" oninput="this.value=this.value.replace(/[^0-9]/g,'');" class="form-control theme otp_input" name="term2" ngModel style="width:50px; float:left;" #term2 ="ngModel" (keyup)="autoTab($event)"/>
+              <input type="text" maxlength="1" oninput="this.value=this.value.replace(/[^0-9]/g,'');" class="form-control theme otp_input" name="term3" ngModel style="width:50px; float:left;" #term3="ngModel" (keyup)="autoTab($event)"/>
+              <input type="text" maxlength="1" oninput="this.value=this.value.replace(/[^0-9]/g,'');" class="form-control theme otp_input" name="term4" ngModel style="width:50px; float:left;" #term4 ="ngModel" (keyup)="autoTab($event)"/>
+              
+              <div class="clearfix"></div>
+            </div>
+          </div>
+
+          <h4 class="titles" style="font-weight:600">SET PASSWORD</h4>
+              <div class="form-group">
+                <input type="password" class="form-control theme"  placeholder="Password*" minlength="6" name="pwd1" ngModel  required #pwd1="ngModel">
+                <div style="color:#fc6107" 
+                            *ngIf="pwd1?.errors && (pwd1.dirty || pwd1.touched || otpf1.submitted || pwd1.minlength)">
+                              <p *ngIf="pwd1?.errors.required">
+                                  The Password is required
+                              </p>
+                               <p *ngIf="pwd1?.errors.minlength">
+                                   The Password must be at least 5 characters long.
+                              </p>
+                </div>
+              </div>
+              <div class="form-group">
+                    <input type="password" class="form-control theme" placeholder="Confirm Password" required 
+                         validateEqual="pwd1"
+                        name="cpwd1" ngModel
+                         #cpwd1="ngModel" (keyup)="autoTab2($event, pwd1.value.length )">
+
+                           <div [hidden]="cpwd1.valid || cpwd1.pristine" style="color:#fc6107">
+                            Passwords did not match
+                           </div>
+                           <div style="color:#fc6107" 
+                            *ngIf="cpwd1.errors && (cpwd1.dirty || cpwd1.touched || otpf1.submitted)">
+                              <p *ngIf="cpwd1?.errors.required">
+                                  The Confirm password is required
+                              </p>
+                           </div>
+
+              </div> 
+       
+      </div>
+    </div>
+      </div>
+      <div class="modal-footer">
+    <button type="submit" #upbOTP class="btn btn-brand">Save</button>
+     <button type="button" class="btn btn-brand" (click)="resendOTP(phneNo)">Resend OTP</button>
+      </div>
+    </div>
+     </form> 
+  </div>
+</div>
+
+<!-- otp modal for login-->
+
+<!-- Forgot PASSWORD OTP content-->
+
+<div id="otp_Forgotpassword_modal" class="modal theme_modal" role="dialog">
+  <div class="modal-dialog">
+    <form  #votpForm="ngForm" novalidate (ngSubmit)="getOtpVerification(votpForm,votpForm.valid)">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button class="btn modal_close_btn" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title"></h4>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+      <div class="col-md-12">
+          <div>
+          <h4 class="text-center text-bold" style="padding:15px; font-weight:600">A One Time Password has been sent to your registered mobile number ending with XX435. 
+          </h4>
+          </div>
+          <style>
+          input.form-control.theme.otp_input {
+            margin: 10px;
+            font-size: 20px;
+            height: 40px;
+            text-align: center;
+          }
+          </style>
+          <div class="text-center">
+            <div class="form-inline" style="width:300px;margin:0 auto;">
+               <input type="text" maxlength="1" oninput="this.value=this.value.replace(/[^0-9]/g,'');" class="form-control theme otp_input" name="term1" ngModel #term1 ="ngModel" minlength="1" maxlength="2" style="width:50px; float:left;"/>
+              <input type="text" maxlength="1" oninput="this.value=this.value.replace(/[^0-9]/g,'');" class="form-control theme otp_input" name="term2" ngModel style="width:50px; float:left;" #term2 ="ngModel" minlength="1" maxlength="1"/>
+              <input type="text" maxlength="1" oninput="this.value=this.value.replace(/[^0-9]/g,'');" class="form-control theme otp_input" name="term3" ngModel style="width:50px; float:left;" #term3="ngModel" minlength="1" maxlength="1"/>
+              <input type="text" maxlength="1" oninput="this.value=this.value.replace(/[^0-9]/g,'');" class="form-control theme otp_input" name="term4" ngModel style="width:50px; float:left;" #term4 ="ngModel" minlength="1" maxlength="1"/>
+              <div class="clearfix"></div>
+              <div class="clearfix"></div>
+            </div>
+          </div>
+
+           <input type="hidden" class="form-control theme" name="user_id" [(ngModel)] = "uid" ngModel #user_id="ngModel">
+          
+      </div>
+    </div>
+      </div>
+      <div class="modal-footer text-center" style="text-align:center">
+    <button type="button" class="btn btn-brand">Resend OTP</button>
+    <button type="submit" class="btn btn-brand" data-toggle="modal" data-target="#reset_password_modal" data-backdrop="false">Confirm</button>
+    </div>
+    </div>
+      </form> 
+  </div>
+</div>
+
+ <!--  RESET PASSWORD content-->
+<div id="reset_password_modal" class="modal theme_modal" role="dialog">
+  <div class="modal-dialog">
+   <form #cp="ngForm" novalidate (ngSubmit)="changePassword(cp,cp.valid)">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button class="btn modal_close_btn" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title"></h4>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+      <div class="col-md-12">
+        
+        <h4 class="titles text-left" style="font-weight:600">Reset Password</h4>
+          <div>
+          
+          </div>
+          <div class="form-group">
+                     <input type="password" class="form-control theme" placeholder="Phone Number*"  placeholder="Password*" minlength="6" name="password" ngModel  required #password="ngModel">
+
+                      <div style="color:#fc6107" 
+                            *ngIf="password?.errors && (password.dirty || password.touched || cp.submitted || password.minlength)">
+                              <p *ngIf="password?.errors.required">
+                                  The Password is required
+                              </p>
+                               <p *ngIf="password?.errors.minlength">
+                                   The Password must be at least 5 characters long.
+                              </p>
+                     </div>
+
+          </div>
+          
+          <div class="form-group">
+           <input type="password" class="form-control theme" placeholder="Confirm Password" required validateEqual="password" name="confirmPassword" ngModel #confirmPassword="ngModel">
+
+                           <div [hidden]="confirmPassword.valid || confirmPassword.pristine" style="color:#fc6107">
+                            Passwords did not match
+                           </div>
+
+
+                           <div style="color:#fc6107" 
+                            *ngIf="confirmPassword.errors && (confirmPassword.dirty || confirmPassword.touched || cp.submitted)">
+                              <p *ngIf="confirmPassword?.errors.required">
+                                  The Confirm password is required
+                              </p>
+                           </div>
+          </div>
+       
+        
+      
+      </div>
+    </div>
+      </div>
+      <div class="modal-footer text-center" style="text-align:center">
+    <button type="submit" class="btn btn-brand">Confirm</button>
+      </div>
+    </div>
+ </form> 
+  </div>
+</div>
+
+                  </div>
+                </div>
+          </div>
+
+    </div>
+  </div>
+</div>

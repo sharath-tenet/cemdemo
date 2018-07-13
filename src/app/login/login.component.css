@@ -1,0 +1,17 @@
+/* .left:after {
+    content: "";
+    background-color: #000;
+    position: absolute;
+    width: 2px;
+    height: 100px;
+    top: 10px;
+    left: 50%;
+    display: block;
+    position: absolute;
+  } */
+input.form-control.theme.otp_input {
+            margin: 10px;
+            font-size: 20px;
+            height: 40px;
+            text-align: center;
+          }

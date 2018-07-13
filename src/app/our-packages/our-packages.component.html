@@ -1,0 +1,67 @@
+<div class="content" style="min-height:800px;">
+    <div class="container">
+        <div class="row" style="">
+           <div class="col-md-12">
+                  <h1 class="bigtitle">OUR PACKAGES </h1>
+            </div>
+        </div>
+        
+        <div class="row" style="margin-top:30px;">
+            <div class="col-md-12">
+                    <div class="row" >
+                            <div class="tenet-loader" *ngIf="loading['_packages']" ><img src="./assets/images/monogram.svg"  /></div> 
+                        <div class="col-md-12 package_detail_container" *ngFor="let pckg of _packages">
+                            <div class="information row">
+                                <div class="col-md-9  col-xs-8 ">
+                                        <h3 class="titles">{{pckg.package_name}}</h3>
+                                        <h4><i class="fa fa-rupee"></i> {{pckg.package_finalpr}}</h4>
+                                        <h5>Parameters Covered: {{pckg.parameter_count}}</h5>
+                                </div>
+                                <div class="col-md-3 col-xs-4 text-center" style="padding-top:20px;">
+                                        <div style="  width:100px;    padding-left: 7px; margin:0 auto">
+                                                <div class="input-group" style="    border:  0;">
+                                                  <span  class="input-group-addon" style="padding: 0; border:  0; background-color:transparent;  padding-right: 5px; " (click)="testQuantMinus(pckg.id)">- 
+                                                  </span>
+                                                  <input type="text" class="form-control theme" value="{{getTestQuant(pckg.id)}}" style="    width: 65px;  padding:  0;    text-align:  center;    font-size:  13px;    height:  30px;" readonly="true">
+                                                  <span class="input-group-addon" style="   padding: 0; padding-left: 5px;   border: 0;    background-color: transparent;" (click)="testQuantPlus(pckg.id)">                                  +
+                                                  </span>
+                                                  </div>
+                                              </div>
+                                   <button *ngIf="!isadded(pckg.id)" class="btn btn-brand btn-sm" (click)="addPackageCart(pckg)" style="background-color: transparent;border: 0;color: #f05b25; box-shadow: none;"><img style="width: 23px; margin-top: -5px;display: inline-block;" src="./assets/images/iconimages/carticon.png"/> ADD TO CART</button>
+                                  
+                                   <button class="btn btn-brand btn-sm added" *ngIf="isadded(pckg.id)" (click)="goToCart()"><img style="    width: 23px;    margin-top: -5px;    display: inline-block;" src="./assets/images/iconimages/carticon.png"/> Go To Cart</button>
+                                   
+                                </div>
+                            </div>
+                            
+                            <div class="information row">
+                                <div class="col-xs-6 package_price">
+                                   
+                                </div>
+                                <div class="col-xs-6 text-right">
+                                        
+
+                                </div>
+                            </div>
+                           <div class="detail_info bg_light_gray" >
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        
+                                        <ul class="list-ul-default" >
+                                             <li *ngFor="let mem of packageServicesList[pckg.id]">
+                                                <a href="./test-details/{{getNameWOS(mem.test_name)}}">{{mem.test_name}}</a>
+                                               
+                                             </li>
+                                            
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                     </div>
+               
+            </div>
+        </div>  
+     </div>
+</div>

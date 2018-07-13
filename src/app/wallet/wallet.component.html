@@ -1,0 +1,57 @@
+<div class="content" style="min-height:800px;">
+    <div class="container">
+      <div class="row" style="">
+           <div class="col-md-12">
+                <h1 class="bigtitle">Wallet</h1>
+            </div>
+        </div>
+    <div class="row">
+      <div table="col-md-6">
+          <button  class="btn btn-brand" style="float: right;" (click)="AW()">ADD AMOUNT</button>
+        <strong>Your Wallet Balance is :  Rs.{{wa.wallet_amount}}</strong>
+      
+      <div *ngIf="addW" class="modal-dialog" role="document">
+            <div class="modal-content">
+              <form  #af="ngForm" novalidate (ngSubmit)="addAmount(af.value)">
+              <div class="modal-header">
+                <h5 class="modal-title">Add Amount to wallet</h5>
+              </div>
+              <div class="modal-body">
+
+                <input type="hidden" name="userid" [(ngModel)]="user.uid" value="{{user.uid}}">
+
+                <div class="form-group"><label class="control-label">Name :</label><input class="theme form-control" type="text" name="amount" placeholder="Amount" ngModel #amount="ngModel"/></div>
+
+                <strong  class="form-text text-success" *ngIf="tmp">Amount added successfully</strong>
+
+              </div>
+              <div class="modal-footer">
+                <button type="submit" class="btn btn-brand">Save changes</button>
+                <button  class="btn btn-secondary" data-dismiss="modal" (click)="hm2()">Close</button>
+              </div>
+            </form>
+            </div>
+          </div>
+
+<div class="col-md-12">
+                <h3 class="">Wallet History</h3>
+            </div>
+    <table class="table">
+     <th>S.No</th><th>amount</th><th>Created At</th>
+       <tr *ngFor="let wh of walletHistory;let index = index;">
+       <td>{{index+1}}</td><td>Rs.{{wh.amount}}</td><td>{{wh.create_date}}</td>
+      </tr>
+    </table>
+
+    
+
+      </div>
+     
+   </div>
+ 
+
+
+</div>
+</div>
+
+

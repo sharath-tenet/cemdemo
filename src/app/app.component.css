@@ -1,0 +1,135 @@
+#cart {
+    position: fixed;
+    bottom: 20px;
+    right:0;
+    width: 30%;
+    height: 40%;
+    border: 10px border-style black;
+    background-color: #F5F5DC;
+    box-shadow: -5px 5px 10px #888888;
+    
+}
+.footer {
+    /* position: fixed; */
+    /* bottom: 0px;  */
+    width: 100%;
+    /* height: 40px; */
+    background-color: #F5F5DC;
+    text-align: center;
+  }
+.footer-left{
+    float: left;
+    text-align: left;
+    margin-bottom: 2px;
+}
+.lg{
+    display: none;
+}
+
+.nav_sub_menu .menu_image{
+        width: 80px;
+    float: left;
+    margin-right: 15px;
+    margin-bottom:55px;
+}
+.nav_sub_menu a:hover{
+    text-decoration:none;
+}
+.nav_sub_menu .menu_list_ul{
+    padding:0;
+    padding-bottom:5px;
+}
+.nav_sub_menu .menu_list_ul li{
+    list-style:none;
+    line-height:1.3;
+}
+.nav_sub_menu .menu_list_ul li a{
+    color:#777;
+    font-size:12px
+}
+.nav_sub_menu .menu_list_ul li.list_heading,.nav_sub_menu .menu_list_ul li.link_more {
+    padding-bottom: 5px;
+    font-size:13px
+}
+.nav_sub_menu .menu_list_ul li.list_heading a{
+    text-transform:uppercase;
+    /* padding-top:5px; */
+}
+.nav_sub_menu .menu_list_ul li.list_heading a,.nav_sub_menu .menu_list_ul li.link_more a{
+    font-size: 14px;
+    font-weight: 600;
+    color: #f05b25;
+}
+.nav_sub_menu .menu_list_ul li.link_more a{
+    font-size: 13px;
+}
+.dropdown-submenu {
+    position: relative;
+}
+
+.dropdown-submenu> .dropdown-menu {
+    top: 0;
+    left: 100%;
+    margin-top: -1px;
+}
+.submenu-level1,.submenu-level2,.nav_sub_menu{
+    border:1px solid #f05b25;
+}
+.submenu-level1>li{
+    padding: 5px 3px;
+    margin:5px;
+    border-bottom:1px solid #eee;
+}
+.submenu-level1>li:last-child{
+    border:0;
+}
+.submenu-level1>li>a{
+    font-weight:600;
+}
+.submenu-level1>li>a:hover,.submenu-level1>li>a:focus,.submenu-level1>li>a:active{
+    background-color:transparent;
+    color:#f05b25;
+    border:0;
+}
+.submenu-level2{
+    margin-left:5px;
+    top:-10px;
+    width:auto;
+    height:auto;
+    
+}
+.dropdown-submenu:hover>.dropdown-menu {
+    display: block;
+}
+.menu_list_ul li {
+    width: 100%;
+    height: 15px;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+a{
+    cursor: pointer;
+}
+.mycart{
+    max-height: 150px;
+    min-height: 100px; 
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+input.form-control.theme.otp_input {
+    margin: 10px;
+    font-size: 20px;
+    height: 40px;
+    text-align: center;
+  }
+  .notify-master{
+    position: fixed;
+    z-index: 1024;
+    /* left: 200px; */
+    text-align: center;
+    top: 0;
+    width: 100%;
+
+  }
